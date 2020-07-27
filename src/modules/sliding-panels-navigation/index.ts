@@ -1,17 +1,10 @@
 import { r, $ } from '../helpers';
 import * as support from '../support';
 
-const prefix = 'mm-spn';
-
 /**
  * Class for navigating in a mobile menu.
  */
 export default class MmSlidingPanelsNavigation {
-    /** Prefix for the class. */
-    get prefix() {
-        return prefix;
-    }
-
     /** HTML element for the menu. */
     node: HTMLElement;
 
@@ -37,8 +30,7 @@ export default class MmSlidingPanelsNavigation {
         node: HTMLElement,
         title: string,
         selectedClass: string,
-        slidingSubmenus: boolean,
-        theme: 'light' | 'dark'
+        slidingSubmenus: boolean
     ) {
         this.node = node;
         this.title = title;
@@ -46,16 +38,15 @@ export default class MmSlidingPanelsNavigation {
         this.selectedClass = selectedClass;
 
         //  Add classname.
-        this.node.classList.add(prefix);
+        this.node.classList.add('mm-spn');
 
         //  Sliding submenus not supported in IE11.
         if (support.IE11) {
             this.slidingSubmenus = false;
         }
 
-        this.node.classList.add(`${prefix}--${theme}`);
         this.node.classList.add(
-            `${prefix}--${this.slidingSubmenus ? 'navbar' : 'vertical'}`
+            `mm-spn--${this.slidingSubmenus ? 'navbar' : 'vertical'}`
         );
 
         this._setSelectedl();
@@ -78,12 +69,12 @@ export default class MmSlidingPanelsNavigation {
 
             //  Opening the main level UL.
             if (listitem === this.node) {
-                this.node.classList.add(`${prefix}--main`);
+                this.node.classList.add(`mm-spn--main`);
             }
 
             //  Opening a sub level UL.
             else {
-                this.node.classList.remove(`${prefix}--main`);
+                this.node.classList.remove(`mm-spn--main`);
 
                 //  Find title from parent LI.
                 if (!title) {
@@ -104,20 +95,20 @@ export default class MmSlidingPanelsNavigation {
             this.node.dataset.mmSpnTitle = title;
 
             //  Unset all panels from being opened and parent.
-            $(`.${prefix}--open`, this.node).forEach(open => {
-                open.classList.remove(`${prefix}--open`);
-                open.classList.remove(`${prefix}--parent`);
+            $(`.mm-spn--open`, this.node).forEach(open => {
+                open.classList.remove(`mm-spn--open`);
+                open.classList.remove(`mm-spn--parent`);
             });
 
             //  Set the current panel as being opened.
-            panel.classList.add(`${prefix}--open`);
-            panel.classList.remove(`${prefix}--parent`);
+            panel.classList.add(`mm-spn--open`);
+            panel.classList.remove(`mm-spn--parent`);
 
             //  Set all parent panels as being parent.
             let parent = panel.parentElement.closest('ul');
             while (parent) {
-                parent.classList.add(`${prefix}--open`);
-                parent.classList.add(`${prefix}--parent`);
+                parent.classList.add(`mm-spn--open`);
+                parent.classList.add(`mm-spn--parent`);
                 parent = parent.parentElement.closest('ul');
             }
         }
@@ -125,20 +116,20 @@ export default class MmSlidingPanelsNavigation {
         //  Vertical submenus
         else {
             /** Whether or not the panel is currently opened. */
-            const isOpened = panel.matches(`.${prefix}--open`);
+            const isOpened = panel.matches(`.mm-spn--open`);
 
             //  Unset all panels from being opened and parent.
-            $(`.${prefix}--open`, this.node).forEach(open => {
-                open.classList.remove(`${prefix}--open`);
+            $(`.mm-spn--open`, this.node).forEach(open => {
+                open.classList.remove(`mm-spn--open`);
             });
 
             //  Toggle the current panel.
-            panel.classList[isOpened ? 'remove' : 'add'](`${prefix}--open`);
+            panel.classList[isOpened ? 'remove' : 'add'](`mm-spn--open`);
 
             //  Set all parent panels as being opened.
             let parent = panel.parentElement.closest('ul');
             while (parent) {
-                parent.classList.add(`${prefix}--open`);
+                parent.classList.add(`mm-spn--open`);
                 parent = parent.parentElement.closest('ul');
             }
         }
@@ -222,7 +213,7 @@ export default class MmSlidingPanelsNavigation {
          */
         const closeSubmenu = (target: HTMLElement): boolean => {
             /** The opened ULs. */
-            let panels = $(`.${prefix}--open`, target);
+            let panels = $(`.mm-spn--open`, target);
 
             /** The last opened UL. */
             let panel = panels[panels.length - 1];

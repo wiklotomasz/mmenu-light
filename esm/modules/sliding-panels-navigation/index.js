@@ -1,6 +1,5 @@
 import { r, $ } from '../helpers';
 import * as support from '../support';
-var prefix = 'mm-spn';
 /**
  * Class for navigating in a mobile menu.
  */
@@ -14,30 +13,21 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
      * @param {boolean}     slidingSubmenus Whether or not to use sliding submenus.
      * @param {string}      theme           The color scheme for the menu.
      */
-    function MmSlidingPanelsNavigation(node, title, selectedClass, slidingSubmenus, theme) {
+    function MmSlidingPanelsNavigation(node, title, selectedClass, slidingSubmenus) {
         this.node = node;
         this.title = title;
         this.slidingSubmenus = slidingSubmenus;
         this.selectedClass = selectedClass;
         //  Add classname.
-        this.node.classList.add(prefix);
+        this.node.classList.add('mm-spn');
         //  Sliding submenus not supported in IE11.
         if (support.IE11) {
             this.slidingSubmenus = false;
         }
-        this.node.classList.add(prefix + "--" + theme);
-        this.node.classList.add(prefix + "--" + (this.slidingSubmenus ? 'navbar' : 'vertical'));
+        this.node.classList.add("mm-spn--" + (this.slidingSubmenus ? 'navbar' : 'vertical'));
         this._setSelectedl();
         this._initAnchors();
     }
-    Object.defineProperty(MmSlidingPanelsNavigation.prototype, "prefix", {
-        /** Prefix for the class. */
-        get: function () {
-            return prefix;
-        },
-        enumerable: false,
-        configurable: true
-    });
     /**
      * Open the given panel.
      *
@@ -52,11 +42,11 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
             var title_1 = panel.dataset.mmSpnTitle;
             //  Opening the main level UL.
             if (listitem === this.node) {
-                this.node.classList.add(prefix + "--main");
+                this.node.classList.add("mm-spn--main");
             }
             //  Opening a sub level UL.
             else {
-                this.node.classList.remove(prefix + "--main");
+                this.node.classList.remove("mm-spn--main");
                 //  Find title from parent LI.
                 if (!title_1) {
                     r(listitem.children).forEach(function (child) {
@@ -73,35 +63,35 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
             //  Set the title.
             this.node.dataset.mmSpnTitle = title_1;
             //  Unset all panels from being opened and parent.
-            $("." + prefix + "--open", this.node).forEach(function (open) {
-                open.classList.remove(prefix + "--open");
-                open.classList.remove(prefix + "--parent");
+            $(".mm-spn--open", this.node).forEach(function (open) {
+                open.classList.remove("mm-spn--open");
+                open.classList.remove("mm-spn--parent");
             });
             //  Set the current panel as being opened.
-            panel.classList.add(prefix + "--open");
-            panel.classList.remove(prefix + "--parent");
+            panel.classList.add("mm-spn--open");
+            panel.classList.remove("mm-spn--parent");
             //  Set all parent panels as being parent.
             var parent_1 = panel.parentElement.closest('ul');
             while (parent_1) {
-                parent_1.classList.add(prefix + "--open");
-                parent_1.classList.add(prefix + "--parent");
+                parent_1.classList.add("mm-spn--open");
+                parent_1.classList.add("mm-spn--parent");
                 parent_1 = parent_1.parentElement.closest('ul');
             }
         }
         //  Vertical submenus
         else {
             /** Whether or not the panel is currently opened. */
-            var isOpened = panel.matches("." + prefix + "--open");
+            var isOpened = panel.matches(".mm-spn--open");
             //  Unset all panels from being opened and parent.
-            $("." + prefix + "--open", this.node).forEach(function (open) {
-                open.classList.remove(prefix + "--open");
+            $(".mm-spn--open", this.node).forEach(function (open) {
+                open.classList.remove("mm-spn--open");
             });
             //  Toggle the current panel.
-            panel.classList[isOpened ? 'remove' : 'add'](prefix + "--open");
+            panel.classList[isOpened ? 'remove' : 'add']("mm-spn--open");
             //  Set all parent panels as being opened.
             var parent_2 = panel.parentElement.closest('ul');
             while (parent_2) {
-                parent_2.classList.add(prefix + "--open");
+                parent_2.classList.add("mm-spn--open");
                 parent_2 = parent_2.parentElement.closest('ul');
             }
         }
@@ -178,7 +168,7 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
          */
         var closeSubmenu = function (target) {
             /** The opened ULs. */
-            var panels = $("." + prefix + "--open", target);
+            var panels = $(".mm-spn--open", target);
             /** The last opened UL. */
             var panel = panels[panels.length - 1];
             if (panel) {

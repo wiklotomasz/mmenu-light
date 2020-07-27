@@ -6,9 +6,6 @@ interface mmNavigationOptions {
     /** Whether or not to use sliding submenus. */
     slidingSubmenus?: boolean;
 
-    /** The color scheme for the menu. */
-    theme?: 'light' | 'dark';
-
     /** The title for the menu. */
     title?: string;
 }

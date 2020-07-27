@@ -45,22 +45,20 @@ export default class MmenuLight {
             const {
                 title = 'Menu',
                 selectedClass = 'Selected',
-                slidingSubmenus = true,
-                theme = 'light',
+                slidingSubmenus = true
             } = options;
 
             this.navigator = new MmSlidingPanelsNavigation(
                 this.menu,
                 title,
                 selectedClass,
-                slidingSubmenus,
-                theme
+                slidingSubmenus
             );
 
             //  En-/disable
             this.toggler.add(
-                () => this.menu.classList.add(this.navigator.prefix),
-                () => this.menu.classList.remove(this.navigator.prefix)
+                () => this.menu.classList.add('mm-spn'),
+                () => this.menu.classList.remove('mm-spn')
             );
         }
 
