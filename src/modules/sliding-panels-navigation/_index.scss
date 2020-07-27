@@ -1,5 +1,3 @@
-$prefix: '.mm-spn';
-
 /** Animation duration. */
 $mmspn_transition_duration: 0.3s;
 
@@ -49,7 +47,7 @@ $mmspn_panel_offset: 30% !default;
 }
 
 //  The menu
-#{$prefix} {
+.mm-spn {
     @extend %mmspn-reset;
 
     width: 100%;
@@ -67,10 +65,13 @@ $mmspn_panel_offset: 30% !default;
 
     //  This creates a new viewport from the menu so the panels can be fixed
     transform: translateX(0px);
+
+    color: #444;
+    background: #f3f3f3;
 }
 
 //  Listviews
-#{$prefix} {
+.mm-spn {
     //  All listviews.
     ul {
         @extend %mmspn-reset;
@@ -115,19 +116,19 @@ $mmspn_panel_offset: 30% !default;
     }
 
     //  Listview opened.
-    ul#{$prefix}--open {
+    ul.mm-spn--open {
         left: 0;
     }
 
     //  Child listview opened.
-    ul#{$prefix}--parent {
+    ul.mm-spn--parent {
         left: -$mmspn_panel_offset;
         overflow-y: hidden;
     }
 }
 
 //  Listitems
-#{$prefix} {
+.mm-spn {
     li {
         @extend %mmspn-reset;
 
@@ -168,7 +169,7 @@ $mmspn_panel_offset: 30% !default;
 }
 
 //  Anchors
-#{$prefix} {
+.mm-spn {
     a,
     span {
         @extend %mmspn-reset;
@@ -214,5 +215,4 @@ $mmspn_panel_offset: 30% !default;
 }
 
 @import 'navbar';
-@import 'themes';
 @import 'vertical';

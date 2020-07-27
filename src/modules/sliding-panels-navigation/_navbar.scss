@@ -1,6 +1,6 @@
-#{$prefix} {
+.mm-spn {
     //  Navbar
-    &#{$prefix}--navbar {
+    &.mm-spn--navbar {
         cursor: pointer;
 
         //  Back button.
@@ -23,7 +23,7 @@
         }
 
         //  No back button when the main listview is opened.
-        &#{$prefix}--main {
+        &.mm-spn--main {
             cursor: default;
 
             &:before {
@@ -56,14 +56,14 @@
         }
 
         //  Title when the main listview is opened.
-        &#{$prefix}--main:after {
+        &.mm-spn--main:after {
             padding-left: $mmspn_item_indent; // IE11 fallback
             padding-left: var(--mm-spn-item-indent);
         }
     }
 
     //  Listviews
-    &#{$prefix}--navbar {
+    &.mm-spn--navbar {
         //  All listviews.
         ul {
             top: $mmspn_item_height + 1; // IE11 fallback
