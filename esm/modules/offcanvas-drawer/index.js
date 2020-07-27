@@ -6,15 +6,14 @@ var MmOffCanvasDrawer = /** @class */ (function () {
      * Class for off-canvas drawer.
      *
      * @param {HTMLElement} [node]          The element to put in the drawer.
-     * @param {String}      [position=left] The position of the drawer, can be "left" or "right".
      */
-    function MmOffCanvasDrawer(node, position) {
+    function MmOffCanvasDrawer(node) {
         var _this = this;
         if (node === void 0) { node = null; }
         //  Create the wrapper.
         this.wrapper = document.createElement('div');
         this.wrapper.classList.add("mm-ocd");
-        this.wrapper.classList.add("mm-ocd--" + position);
+        this.wrapper.classList.add("mm-ocd--left");
         //  Create the drawer.
         this.content = document.createElement('div');
         this.content.classList.add("mm-ocd__content");

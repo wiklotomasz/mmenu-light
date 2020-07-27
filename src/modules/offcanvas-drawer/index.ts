@@ -15,13 +15,12 @@ export default class MmOffCanvasDrawer {
      * Class for off-canvas drawer.
      *
      * @param {HTMLElement} [node]          The element to put in the drawer.
-     * @param {String}      [position=left] The position of the drawer, can be "left" or "right".
      */
-    constructor(node: HTMLElement = null, position: 'left' | 'right') {
+    constructor(node: HTMLElement = null) {
         //  Create the wrapper.
         this.wrapper = document.createElement('div');
         this.wrapper.classList.add(`mm-ocd`);
-        this.wrapper.classList.add(`mm-ocd--${position}`);
+        this.wrapper.classList.add(`mm-ocd--left`);
 
         //  Create the drawer.
         this.content = document.createElement('div');

@@ -25,7 +25,7 @@ var MmenuLight = /** @class */ (function () {
         //  Only needs to be done ones.
         if (!this.navigator) {
             options = options || {};
-            var _a = options.title, title = _a === void 0 ? 'Menu' : _a, _b = options.selectedClass, selectedClass = _b === void 0 ? 'Selected' : _b, _c = options.slidingSubmenus, slidingSubmenus = _c === void 0 ? true : _c;
+            var _a = options.title, title = _a === void 0 ? 'Menuu' : _a, _b = options.selectedClass, selectedClass = _b === void 0 ? 'Selected' : _b, _c = options.slidingSubmenus, slidingSubmenus = _c === void 0 ? true : _c;
             this.navigator = new MmSlidingPanelsNavigation(this.menu, title, selectedClass, slidingSubmenus);
             //  Enable
             (function () { return _this.menu.classList.add('mm-spn'); });
@@ -37,12 +37,10 @@ var MmenuLight = /** @class */ (function () {
      *
      * @param {object} options Options for the off-canvas drawer.
      */
-    MmenuLight.prototype.offcanvas = function (options) {
+    MmenuLight.prototype.offcanvas = function () {
         //  Only needs to be done ones.
         if (!this.drawer) {
-            options = options || {};
-            var _a = options.position, position = _a === void 0 ? 'left' : _a;
-            this.drawer = new MmOffCanvasDrawer(null, position);
+            this.drawer = new MmOffCanvasDrawer(null);
             /** Original location in the DOM for the menu. */
             var orgLocation = document.createComment('original menu location');
             this.menu.after(orgLocation);

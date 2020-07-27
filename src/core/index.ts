@@ -60,12 +60,10 @@ export default class MmenuLight {
      *
      * @param {object} options Options for the off-canvas drawer.
      */
-    offcanvas(options: mmOffcanvasOptions) {
+    offcanvas() {
         //  Only needs to be done ones.
         if (!this.drawer) {
-            options = options || {};
-            const { position = 'left' } = options;
-            this.drawer = new MmOffCanvasDrawer(null, position);
+            this.drawer = new MmOffCanvasDrawer(null);
 
             /** Original location in the DOM for the menu. */
             let orgLocation = document.createComment('original menu location');

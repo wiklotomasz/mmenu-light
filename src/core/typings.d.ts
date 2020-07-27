@@ -9,9 +9,3 @@ interface mmNavigationOptions {
     /** The title for the menu. */
     title?: string;
 }
-
-/**	Options for the offcanvas drawer. */
-interface mmOffcanvasOptions {
-    /** The position of the drawer. */
-    position?: 'left' | 'right';
-}
