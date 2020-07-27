@@ -18,9 +18,8 @@ export default class MmenuLight {
      * Create a lightweight mobile menu.
      *
      * @param {HTMLElement} menu                HTML element for the menu.
-     * @param {string}      [mediaQuery='all']  Media queury to match for the menu.
      */
-    constructor(menu: HTMLElement, mediaQuery: string = 'all') {
+    constructor(menu: HTMLElement) {
         //  Store the menu node.
         this.menu = menu;
     }
@@ -37,7 +36,7 @@ export default class MmenuLight {
 
             const {
                 title = 'Menu',
-                selectedClass = 'Selected',
+                selectedClass = 'selected',
                 slidingSubmenus = true
             } = options;
 
@@ -47,9 +46,6 @@ export default class MmenuLight {
                 selectedClass,
                 slidingSubmenus
             );
-
-            //  Enable
-            () => this.menu.classList.add('mm-spn')
         }
 
         return this.navigator;
