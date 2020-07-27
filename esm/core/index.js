@@ -22,7 +22,7 @@ var MmenuLight = /** @class */ (function () {
         //  Only needs to be done ones.
         if (!this.navigator) {
             options = options || {};
-            var _a = options.title, title = _a === void 0 ? 'Menux' : _a, _b = options.selectedClass, selectedClass = _b === void 0 ? 'Selected' : _b, _c = options.slidingSubmenus, slidingSubmenus = _c === void 0 ? true : _c;
+            var _a = options.title, title = _a === void 0 ? 'Menu' : _a, _b = options.selectedClass, selectedClass = _b === void 0 ? 'selected' : _b, _c = options.slidingSubmenus, slidingSubmenus = _c === void 0 ? true : _c;
             this.navigator = new MmSlidingPanelsNavigation(this.menu, title, selectedClass, slidingSubmenus);
         }
         return this.navigator;

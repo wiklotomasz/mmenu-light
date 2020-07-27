@@ -37,9 +37,6 @@ export default class MmSlidingPanelsNavigation {
         this.slidingSubmenus = slidingSubmenus;
         this.selectedClass = selectedClass;
 
-        //  Add classname.
-        this.node.classList.add('mm-spn');
-
         //  Sliding submenus not supported in IE11.
         if (support.IE11) {
             this.slidingSubmenus = false;
