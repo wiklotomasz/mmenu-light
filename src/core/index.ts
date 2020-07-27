@@ -1,4 +1,3 @@
-import MmToggler from '../modules/match-media-toggler/index';
 import MmSlidingPanelsNavigation from '../modules/sliding-panels-navigation/index';
 import MmOffCanvasDrawer from '../modules/offcanvas-drawer/index';
 
@@ -8,9 +7,6 @@ import MmOffCanvasDrawer from '../modules/offcanvas-drawer/index';
 export default class MmenuLight {
     /** HTML element for the menu. */
     menu: HTMLElement;
-
-    /** The Toggler instance. */
-    toggler: MmToggler;
 
     /** The Navigation instance. */
     navigator: MmSlidingPanelsNavigation;
@@ -27,9 +23,6 @@ export default class MmenuLight {
     constructor(menu: HTMLElement, mediaQuery: string = 'all') {
         //  Store the menu node.
         this.menu = menu;
-
-        //  Create the toggler instance.
-        this.toggler = new MmToggler(mediaQuery);
     }
 
     /**
@@ -55,11 +48,8 @@ export default class MmenuLight {
                 slidingSubmenus
             );
 
-            //  En-/disable
-            this.toggler.add(
-                () => this.menu.classList.add('mm-spn'),
-                () => this.menu.classList.remove('mm-spn')
-            );
+            //  Enable
+            () => this.menu.classList.add('mm-spn')
         }
 
         return this.navigator;
@@ -81,20 +71,8 @@ export default class MmenuLight {
             let orgLocation = document.createComment('original menu location');
             this.menu.after(orgLocation);
 
-            //  En-/disable
-            this.toggler.add(
-                () => {
-                    // Move the menu to the drawer.
-                    this.drawer.content.append(this.menu);
-                },
-                () => {
-                    // Close the drawer.
-                    this.drawer.close();
-
-                    // Move the menu to the original position.
-                    orgLocation.after(this.menu);
-                }
-            );
+            //  Enable
+            this.drawer.content.append(this.menu);
         }
 
         return this.drawer;

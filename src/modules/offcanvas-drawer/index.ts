@@ -1,14 +1,7 @@
-const prefix = 'mm-ocd';
-
 /**
  * Class for off-canvas behavior.
  */
 export default class MmOffCanvasDrawer {
-    /** Prefix for the class. */
-    get prefix() {
-        return prefix;
-    }
-
     /** HTML element for the wrapper */
     wrapper: HTMLElement;
 
@@ -27,17 +20,17 @@ export default class MmOffCanvasDrawer {
     constructor(node: HTMLElement = null, position: 'left' | 'right') {
         //  Create the wrapper.
         this.wrapper = document.createElement('div');
-        this.wrapper.classList.add(`${prefix}`);
-        this.wrapper.classList.add(`${prefix}--${position}`);
+        this.wrapper.classList.add(`mm-ocd`);
+        this.wrapper.classList.add(`mm-ocd--${position}`);
 
         //  Create the drawer.
         this.content = document.createElement('div');
-        this.content.classList.add(`${prefix}__content`);
+        this.content.classList.add(`mm-ocd__content`);
         this.wrapper.append(this.content);
 
         //  Create the backdrop.
         this.backdrop = document.createElement('div');
-        this.backdrop.classList.add(`${prefix}__backdrop`);
+        this.backdrop.classList.add(`mm-ocd__backdrop`);
         this.wrapper.append(this.backdrop);
 
         //  Add the nodes to the <body>.
@@ -60,15 +53,15 @@ export default class MmOffCanvasDrawer {
      * Open the drawer.
      */
     open() {
-        this.wrapper.classList.add(`${prefix}--open`);
-        document.body.classList.add(`${prefix}-opened`);
+        this.wrapper.classList.add(`mm-ocd--open`);
+        document.body.classList.add(`mm-ocd-opened`);
     }
 
     /**
      * Close the drawer.
      */
     close() {
-        this.wrapper.classList.remove(`${prefix}--open`);
-        document.body.classList.remove(`${prefix}-opened`);
+        this.wrapper.classList.remove(`mm-ocd--open`);
+        document.body.classList.remove(`mm-ocd-opened`);
     }
 }
