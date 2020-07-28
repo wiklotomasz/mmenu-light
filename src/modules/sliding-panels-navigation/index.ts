@@ -102,11 +102,11 @@ export default class MmSlidingPanelsNavigation {
             panel.classList.remove(`mm-spn--parent`);
 
             //  Set all parent panels as being parent.
-            let parent = panel.parentElement.closest('ul');
+            let parent = panel.parentElement.closest('.mm-panel');
             while (parent) {
                 parent.classList.add(`mm-spn--open`);
                 parent.classList.add(`mm-spn--parent`);
-                parent = parent.parentElement.closest('ul');
+                parent = parent.parentElement.closest('.mm-panel');
             }
         }
 
@@ -124,10 +124,10 @@ export default class MmSlidingPanelsNavigation {
             panel.classList[isOpened ? 'remove' : 'add'](`mm-spn--open`);
 
             //  Set all parent panels as being opened.
-            let parent = panel.parentElement.closest('ul');
+            let parent = panel.parentElement.closest('.mm-panel');
             while (parent) {
                 parent.classList.add(`mm-spn--open`);
-                parent = parent.parentElement.closest('ul');
+                parent = parent.parentElement.closest('.mm-panel');
             }
         }
     }
@@ -146,10 +146,10 @@ export default class MmSlidingPanelsNavigation {
         let panel = null;
 
         if (listitem) {
-            panel = listitem.closest('ul');
+            panel = listitem.closest('.mm-panel');
         }
         if (!panel) {
-            panel = this.node.querySelector('ul');
+            panel = this.node.querySelector('.mm-panel');
         }
         this.openPanel(panel);
     }
@@ -192,7 +192,7 @@ export default class MmSlidingPanelsNavigation {
 
             if (listitem) {
                 r(listitem.children).forEach(panel => {
-                    if (panel.matches('ul')) {
+                    if (panel.matches('.mm-panel')) {
                         this.openPanel(panel);
                     }
                 });
@@ -216,7 +216,7 @@ export default class MmSlidingPanelsNavigation {
             let panel = panels[panels.length - 1];
             if (panel) {
                 /** The second to last opened UL. */
-                let parent = panel.parentElement.closest('ul');
+                let parent = panel.parentElement.closest('.mm-panel');
                 if (parent) {
                     this.openPanel(parent);
                     return true;

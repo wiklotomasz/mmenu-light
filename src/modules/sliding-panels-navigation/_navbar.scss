@@ -65,7 +65,7 @@
     //  Listviews
     &.mm-spn--navbar {
         //  All listviews.
-        ul {
+        .mm-panel {
             top: $mmspn_item_height + 1; // IE11 fallback
             top: calc(var(--mm-spn-item-height) + 1px);
 

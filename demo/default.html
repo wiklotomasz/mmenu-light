@@ -13,32 +13,46 @@
 	<body>
 		<div id="page">
 			<div class="header">
-				<a href="#menu"><span></span></a>
+				<a class="nav-opener" href="#mainmenu"><span></span></a>
 				Demo
 				<nav id="menu" class="mm-spn">
-					<ul>
-						<li class="Selected"><a href="#">Home</a></li>
-						<li><span>About us</span>
-							<ul>
-								<li><a href="#about/history">History</a></li>
-								<li><span>The team</span>
+					<div class="mm-panel" data-panel-id="#mainmenu">
+						<input type="text" value="searchbox" />
+						<ul>
+							<li class="Selected"><a href="#">Home</a></li>
+							<li><span>About us</span>
+								<div class="mm-panel" data-panel-id="#aboutus">
+									<input type="text" value="searchbox" />
 									<ul>
-										<li><a href="#about/team/management">Management</a></li>
-										<li><a href="#about/team/sales">Sales</a></li>
-										<li><a href="#about/team/development">Development</a></li>
+										<li><a href="#about/history">History</a></li>
+										<li><span>The team</span>
+											<div class="mm-panel" data-panel-id="#theteam">
+												<input type="text" value="searchbox" />
+												<input type="text" value="searchbox" />
+												<ul>
+													<li><a href="#about/team/management">Management</a></li>
+													<li><a href="#about/team/sales">Sales</a></li>
+													<li><a href="#about/team/development">Development</a></li>
+												</ul>
+											</div>
+										</li>
+										<li><a href="#about/address">Our address</a></li>
 									</ul>
-								</li>
-								<li><a href="#about/address">Our address</a></li>
-							</ul>
-						</li>
-						<li><a href="#contact">Contact</a></li>
-					</ul>
+									<input type="text" value="searchbox" />
+								</div>
+							</li>
+							<li><a href="#contact">Contact</a></li>
+						</ul>		
+					</div>
 				</nav>
 			</div>
 
 			<div class="content">
 				<p><strong>This is a demo.</strong><br />
 					Click the hamburger icon to open the menu.</p>
+
+					<p>Open <a class="nav-opener" href="#aboutus">About us</a></p>
+					<p>Open <a class="nav-opener" href="#theteam">The team</a></p>
 			</div>
 		</div>
 
@@ -56,12 +70,17 @@
 
 			var drawer = menu.offcanvas();
 
-			//	Open the menu.
-			document.querySelector( 'a[href="#menu"]' )
-				.addEventListener( 'click', evnt => {
+			//Open the menu on selected panel
+			var NavOpeners = document.querySelectorAll( '.nav-opener' );
+
+			for (let i = 0; i < NavOpeners.length; i++) {
+				NavOpeners[i].addEventListener( 'click', evnt => {
 					evnt.preventDefault();
+					var panelElement = document.querySelector(`[data-panel-id="${evnt.target.hash}"`);
+					menu.navigator.openPanel(panelElement);
 					drawer.open();
 				});
+			}
 
 		</script>
 	</body>

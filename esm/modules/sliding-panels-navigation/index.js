@@ -69,11 +69,11 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
             panel.classList.add("mm-spn--open");
             panel.classList.remove("mm-spn--parent");
             //  Set all parent panels as being parent.
-            var parent_1 = panel.parentElement.closest('ul');
+            var parent_1 = panel.parentElement.closest('.mm-panel');
             while (parent_1) {
                 parent_1.classList.add("mm-spn--open");
                 parent_1.classList.add("mm-spn--parent");
-                parent_1 = parent_1.parentElement.closest('ul');
+                parent_1 = parent_1.parentElement.closest('.mm-panel');
             }
         }
         //  Vertical submenus
@@ -87,10 +87,10 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
             //  Toggle the current panel.
             panel.classList[isOpened ? 'remove' : 'add']("mm-spn--open");
             //  Set all parent panels as being opened.
-            var parent_2 = panel.parentElement.closest('ul');
+            var parent_2 = panel.parentElement.closest('.mm-panel');
             while (parent_2) {
                 parent_2.classList.add("mm-spn--open");
-                parent_2 = parent_2.parentElement.closest('ul');
+                parent_2 = parent_2.parentElement.closest('.mm-panel');
             }
         }
     };
@@ -105,10 +105,10 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
         /** The opened UL. */
         var panel = null;
         if (listitem) {
-            panel = listitem.closest('ul');
+            panel = listitem.closest('.mm-panel');
         }
         if (!panel) {
-            panel = this.node.querySelector('ul');
+            panel = this.node.querySelector('.mm-panel');
         }
         this.openPanel(panel);
     };
@@ -150,7 +150,7 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
             }
             if (listitem) {
                 r(listitem.children).forEach(function (panel) {
-                    if (panel.matches('ul')) {
+                    if (panel.matches('.mm-panel')) {
                         _this.openPanel(panel);
                     }
                 });
@@ -171,7 +171,7 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
             var panel = panels[panels.length - 1];
             if (panel) {
                 /** The second to last opened UL. */
-                var parent_3 = panel.parentElement.closest('ul');
+                var parent_3 = panel.parentElement.closest('.mm-panel');
                 if (parent_3) {
                     _this.openPanel(parent_3);
                     return true;

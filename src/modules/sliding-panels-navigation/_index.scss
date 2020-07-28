@@ -73,7 +73,7 @@ $mmspn_panel_offset: 30% !default;
 //  Listviews
 .mm-spn {
     //  All listviews.
-    ul {
+    .mm-panel {
         @extend %mmspn-reset;
 
         //  Enables smooth scrolling.
@@ -110,18 +110,24 @@ $mmspn_panel_offset: 30% !default;
         }
     }
 
+    //Reset for list
+    ul {
+        @extend %mmspn-reset;
+        background: inherit;
+    }
+
     //  First level listview.
-    > ul {
+    > .mm-panel {
         left: 0;
     }
 
     //  Listview opened.
-    ul.mm-spn--open {
+    .mm-panel.mm-spn--open {
         left: 0;
     }
 
     //  Child listview opened.
-    ul.mm-spn--parent {
+    .mm-panel.mm-spn--parent {
         left: -$mmspn_panel_offset;
         overflow-y: hidden;
     }
