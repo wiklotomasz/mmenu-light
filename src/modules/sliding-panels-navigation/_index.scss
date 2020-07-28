@@ -26,7 +26,7 @@ $mmspn_item_indent: 20px !default;
 $mmspn_line_height: 24px !default;
 
 /** Panel offset. */
-$mmspn_panel_offset: 30% !default;
+$mmspn_panel_offset: 100% !default;
 
 %mmspn-reset {
     display: block;
@@ -68,6 +68,17 @@ $mmspn_panel_offset: 30% !default;
 
     color: #444;
     background: #f3f3f3;
+}
+
+//Menu header
+.mm-spn {
+    .mm-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: $mmspn_item_height; // IE11 fallback
+        height: var(--mm-spn-item-height);
+    }
 }
 
 //  Listviews
@@ -175,7 +186,7 @@ $mmspn_panel_offset: 30% !default;
 }
 
 //  Anchors
-.mm-spn {
+.mm-panel {
     a,
     span {
         @extend %mmspn-reset;

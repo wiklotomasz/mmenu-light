@@ -31,35 +31,6 @@
                 display: none;
             }
         }
-
-        //  Title.
-        &:after {
-            content: attr(data-mm-spn-title);
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: $mmspn_item_height; // IE11 fallback
-            height: var(--mm-spn-item-height);
-            padding: 0 $mmspn_item_indent * 2; // IE11 fallback
-            padding: 0 calc(var(--mm-spn-item-indent) * 2);
-            line-height: $mmspn_item_height; // IE11 fallback
-            line-height: var(--mm-spn-item-height);
-            opacity: $mmspn_navbar_opac;
-            text-align: center;
-
-            //  Ellipsis.
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-
-        //  Title when the main listview is opened.
-        &.mm-spn--main:after {
-            padding-left: $mmspn_item_indent; // IE11 fallback
-            padding-left: var(--mm-spn-item-indent);
-        }
     }
 
     //  Listviews

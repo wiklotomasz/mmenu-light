@@ -17,6 +17,9 @@ export default class MmSlidingPanelsNavigation {
     /** The class for selected menu items. */
     selectedClass: string;
 
+    /** Menu title tag */
+    mmSpnTitle: HTMLElement;
+
     /**
      * Class for navigating in a mobile menu.
      *
@@ -45,6 +48,8 @@ export default class MmSlidingPanelsNavigation {
         this.node.classList.add(
             `mm-spn--${this.slidingSubmenus ? 'navbar' : 'vertical'}`
         );
+
+        this.mmSpnTitle = this.node.querySelector('#mm-header__title');
 
         this._setSelectedl();
         this._initAnchors();
@@ -89,7 +94,7 @@ export default class MmSlidingPanelsNavigation {
             }
 
             //  Set the title.
-            this.node.dataset.mmSpnTitle = title;
+            this.mmSpnTitle.innerHTML = title;
 
             //  Unset all panels from being opened and parent.
             $(`.mm-spn--open`, this.node).forEach(open => {

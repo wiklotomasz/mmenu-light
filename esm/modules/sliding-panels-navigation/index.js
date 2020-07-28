@@ -23,6 +23,7 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
             this.slidingSubmenus = false;
         }
         this.node.classList.add("mm-spn--" + (this.slidingSubmenus ? 'navbar' : 'vertical'));
+        this.mmSpnTitle = this.node.querySelector('#mm-header__title');
         this._setSelectedl();
         this._initAnchors();
     }
@@ -59,7 +60,7 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
                 title_1 = this.title;
             }
             //  Set the title.
-            this.node.dataset.mmSpnTitle = title_1;
+            this.mmSpnTitle.innerHTML = title_1;
             //  Unset all panels from being opened and parent.
             $(".mm-spn--open", this.node).forEach(function (open) {
                 open.classList.remove("mm-spn--open");
