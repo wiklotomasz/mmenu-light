@@ -1,6 +1,4 @@
 //  SCSS Variables
-$prefix: '.mm-ocd';
-
 $mmocd_width: 80% !default;
 $mmocd_min_width: 200px !default;
 $mmocd_max_width: 440px !default;
@@ -20,14 +18,14 @@ $mmocd_transition_duration: 0.3s !default;
 }
 
 //  The rest of the page
-body#{$prefix}-opened {
+body.mm-ocd-opened {
     //  Somewhat prevents scrolling.
     overflow-y: hidden;
     overscroll-behavior: none;
 }
 
 //  The wrapper
-#{$prefix} {
+.mm-ocd {
     position: fixed;
     top: 0;
     right: 0;
@@ -53,7 +51,7 @@ body#{$prefix}-opened {
 }
 
 //  The content
-#{$prefix}__content {
+.mm-ocd__content {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -73,23 +71,23 @@ body#{$prefix}-opened {
         timing-function: ease;
     }
 
-    #{$prefix}--left & {
+    .mm-ocd--left & {
         left: 0;
         transform: translate3d(-100%, 0, 0);
     }
 
-    #{$prefix}--right & {
+    .mm-ocd--right & {
         right: 0;
         transform: translate3d(100%, 0, 0);
     }
 
-    #{$prefix}--open & {
+    .mm-ocd--open & {
         transform: translate3d(0, 0, 0);
     }
 }
 
 //  The backdrop
-#{$prefix}__backdrop {
+.mm-ocd__backdrop {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -104,11 +102,11 @@ body#{$prefix}-opened {
 
     background: rgba(3, 2, 1, 0);
 
-    #{$prefix}--left & {
+    .mm-ocd--left & {
         right: 0;
     }
 
-    #{$prefix}--right & {
+    .mm-ocd--right & {
         left: 0;
     }
 }
