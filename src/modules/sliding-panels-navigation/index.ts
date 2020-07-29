@@ -207,72 +207,12 @@ export default class MmSlidingPanelsNavigation {
             return false;
         };
 
-        /**
-         * Clicking the back button: close the last opened submenu or close the menu.
-         *
-         * @param   {HTMLElement}    target The clicked element.
-         * @return  {boolean}       handled Whether or not the event was handled.
-         */
-        const closeSubmenuDwa = (target: HTMLElement): boolean => {
-            if (target.matches('.mm-btn_prev')) {
-                console.log('to kliknales mm-btn_prev');
-                console.log(this.node, 'this node');
-                let panels = $(`.mm-spn--open`, this.node);
-                console.log(panels, 'panels');
-    
-                /** The last opened UL. */
-                let panel = panels[panels.length - 1];
-                if (panel) {
-                    /** The second to last opened UL. */
-                    let parent = panel.parentElement.closest('.mm-panel');
-                    if (parent) {
-                        console.log(this.node);
-                        this.openPanel(parent);
-                        return true;
-                    }
-                } else {
-                    console.log('zamknij panel');
-                    console.log(this.node);
-                    //target.classList.add(`mm-btn_prev--close`);
-                    return true;
-                }
-            }
-            console.log('to niekliknales mm-btn_prev');
-            return false;
-        };
-
-        /**
-         * Click the menu (the navbar): close the last opened submenu.
-         *
-         * @param   {HTMLElement}    target The clicked element.
-         * @return  {boolean}               Whether or not the event was handled.
-         */
-        const closeSubmenu = (target: HTMLElement): boolean => {
-            /** The opened ULs. */
-            let panels = $(`.mm-spn--open`, this.node);
-            console.log(panels, 'panels');
-
-            /** The last opened UL. */
-            let panel = panels[panels.length - 1];
-            if (panel) {
-                /** The second to last opened UL. */
-                let parent = panel.parentElement.closest('.mm-panel');
-                if (parent) {
-                    this.openPanel(parent);
-                    return true;
-                }
-            }
-            return false;
-        };
-
         this.node.addEventListener('click', evnt => {
             let target = evnt.target as HTMLElement;
             let handled = false;
 
-            //handled = handled || closeSubmenuDwa(target);
             handled = handled || clickAnchor(target);
             handled = handled || openSubmenu(target);
-            //handled = handled || closeSubmenu(target);
 
             if (handled) {
                 evnt.stopImmediatePropagation();

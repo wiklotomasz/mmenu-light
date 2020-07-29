@@ -159,68 +159,11 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
             }
             return false;
         };
-        /**
-         * Clicking the back button: close the last opened submenu or close the menu.
-         *
-         * @param   {HTMLElement}    target The clicked element.
-         * @return  {boolean}       handled Whether or not the event was handled.
-         */
-        var closeSubmenuDwa = function (target) {
-            if (target.matches('.mm-btn_prev')) {
-                console.log('to kliknales mm-btn_prev');
-                console.log(_this.node, 'this node');
-                var panels = $(".mm-spn--open", _this.node);
-                console.log(panels, 'panels');
-                /** The last opened UL. */
-                var panel = panels[panels.length - 1];
-                if (panel) {
-                    /** The second to last opened UL. */
-                    var parent_3 = panel.parentElement.closest('.mm-panel');
-                    if (parent_3) {
-                        console.log(_this.node);
-                        _this.openPanel(parent_3);
-                        return true;
-                    }
-                }
-                else {
-                    console.log('zamknij panel');
-                    console.log(_this.node);
-                    //target.classList.add(`mm-btn_prev--close`);
-                    return true;
-                }
-            }
-            console.log('to niekliknales mm-btn_prev');
-            return false;
-        };
-        /**
-         * Click the menu (the navbar): close the last opened submenu.
-         *
-         * @param   {HTMLElement}    target The clicked element.
-         * @return  {boolean}               Whether or not the event was handled.
-         */
-        var closeSubmenu = function (target) {
-            /** The opened ULs. */
-            var panels = $(".mm-spn--open", _this.node);
-            console.log(panels, 'panels');
-            /** The last opened UL. */
-            var panel = panels[panels.length - 1];
-            if (panel) {
-                /** The second to last opened UL. */
-                var parent_4 = panel.parentElement.closest('.mm-panel');
-                if (parent_4) {
-                    _this.openPanel(parent_4);
-                    return true;
-                }
-            }
-            return false;
-        };
         this.node.addEventListener('click', function (evnt) {
             var target = evnt.target;
             var handled = false;
-            //handled = handled || closeSubmenuDwa(target);
             handled = handled || clickAnchor(target);
             handled = handled || openSubmenu(target);
-            //handled = handled || closeSubmenu(target);
             if (handled) {
                 evnt.stopImmediatePropagation();
             }
