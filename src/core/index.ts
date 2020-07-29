@@ -1,3 +1,4 @@
+import { $ } from '../modules/helpers';
 import MmSlidingPanelsNavigation from '../modules/sliding-panels-navigation/index';
 import MmOffCanvasDrawer from '../modules/offcanvas-drawer/index';
 
@@ -70,5 +71,24 @@ export default class MmenuLight {
         }
 
         return this.drawer;
+    }
+
+    handleClosings() {
+        /** The opened ULs. */
+        let panels = $(`.mm-spn--open`, this.navigator.node);
+
+        /** The last opened UL. */
+        let panel = panels[panels.length - 1];
+        if (panel) {
+            /** The second to last opened UL. */
+            let parent = panel.parentElement.closest('.mm-panel');
+            if (parent) {
+                this.navigator.openPanel(parent);
+                return true;
+            } else {
+                this.drawer.close();
+            }
+        }
+        return false;
     }
 }

@@ -17,19 +17,19 @@
 				Demo
 				<nav id="menu" class="mm-spn">
 					<div class="mm-header">
-						<a href="#back" class="mm-btn mm-btn_prev" aria-label="Close submenu">
-							<span>Close submenu</span>
-						</a>
+						<div href="#back" class="mm-btn mm-btn_prev" aria-label="Close submenu">
+							Close submenu
+						</div>
 						<h5 class="mm-header__title" id="mm-header__title">Menu</h5>
-						<a href="#close" class="mm-btn mm-btn_close" aria-label="Close main menu">
-							<span>Close main menu</span>
-						</a>
+						<div href="#close" class="mm-btn mm-btn_close" aria-label="Close main menu">
+							Close main menu
+						</div>
 					</div>
 					<div class="mm-panel" data-panel-id="#mainmenu">
 						<input type="text" value="searchbox" />
 						<ul>
 							<li class="Selected"><a href="#">Home</a></li>
-							<li><span>About us</span>
+							<li><span>Producte</span>
 								<div class="mm-panel" data-panel-id="#aboutus">
 									<input type="text" value="searchbox" />
 									<ul>
@@ -46,6 +46,34 @@
 											</div>
 										</li>
 										<li><a href="#about/address">Our address</a></li>
+									</ul>
+									<input type="text" value="searchbox" />
+								</div>
+							</li>
+							<li><span>Services</span>
+								<div class="mm-panel" data-panel-id="#aboutus">
+									<input type="text" value="searchbox" />
+									<ul>
+										<li><a href="#">Ratgeber & Rechtsportal</a></li>
+										<li><a href="#">Freundschaftswerbung</a></li>
+										<li><span>Services für ERGO Kunden</span>
+											<div class="mm-panel" data-panel-id="#theteam">
+												<input type="text" value="searchbox" />
+												<input type="text" value="searchbox" />
+												<ul>
+													<li><a href="#about/team/management">Management</a></li>
+													<li><a href="#about/team/sales">Sales</a></li>
+													<li><a href="#about/team/development">Development</a></li>
+													<li><a href="#about/team/management">Management</a></li>
+													<li><a href="#about/team/sales">Sales</a></li>
+													<li><a href="#about/team/development">Development</a></li>
+													<li><a href="#about/team/management">Management</a></li>
+													<li><a href="#about/team/sales">Sales</a></li>
+													<li><a href="#about/team/development">Development</a></li>
+												</ul>
+											</div>
+										</li>
+										<li><a href="#">Alle Services im Überblick</a></li>
 									</ul>
 									<input type="text" value="searchbox" />
 								</div>
@@ -71,12 +99,7 @@
 				document.querySelector( '#menu' )
 			);
 
-			var navigator = menu.navigation({
-				// selectedClass: 'Selected',
-				// slidingSubmenus: true,
-				// title: 'Menu'
-			});
-
+			var navigator = menu.navigation();
 			var drawer = menu.offcanvas();
 
 			//Open the menu on selected panel
@@ -90,6 +113,21 @@
 					drawer.open();
 				});
 			}
+
+			
+
+			var closeButton = document.querySelector( '.mm-btn_close' );
+			closeButton.addEventListener( 'click', evnt => {
+				evnt.preventDefault();
+				drawer.close();
+			});
+
+			var prevButton = document.querySelector( '.mm-btn_prev' );
+			prevButton.addEventListener( 'click', evnt => {
+				evnt.preventDefault();
+				menu.handleClosings();
+			});
+			
 
 		</script>
 	</body>

@@ -1,38 +1,4 @@
 .mm-spn {
-    //  Navbar
-    &.mm-spn--navbar {
-        cursor: pointer;
-
-        //  Back button.
-        &:before {
-            content: '';
-            display: block;
-            position: absolute;
-            top: $mmspn_item_height / 2; // IE11 fallback
-            top: calc(var(--mm-spn-item-height) / 2);
-            left: $mmspn_item_indent; // IE11 fallback
-            left: var(--mm-spn-item-indent);
-            width: $mmspn_arrow_size;
-            height: $mmspn_arrow_size;
-            margin-top: 2px;
-
-            border-top: $mmspn_arrow_weight solid;
-            border-left: $mmspn_arrow_weight solid;
-            transform: rotate(-45deg) translate(50%, -50%);
-            opacity: $mmspn_navbar_opac;
-        }
-
-        //  No back button when the main listview is opened.
-        &.mm-spn--main {
-            cursor: default;
-
-            &:before {
-                content: none;
-                display: none;
-            }
-        }
-    }
-
     //  Listviews
     &.mm-spn--navbar {
         //  All listviews.

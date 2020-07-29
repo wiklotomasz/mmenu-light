@@ -1,3 +1,4 @@
+import { $ } from '../modules/helpers';
 import MmSlidingPanelsNavigation from '../modules/sliding-panels-navigation/index';
 import MmOffCanvasDrawer from '../modules/offcanvas-drawer/index';
 /**
@@ -43,6 +44,24 @@ var MmenuLight = /** @class */ (function () {
             this.drawer.content.append(this.menu);
         }
         return this.drawer;
+    };
+    MmenuLight.prototype.handleClosings = function () {
+        /** The opened ULs. */
+        var panels = $(".mm-spn--open", this.navigator.node);
+        /** The last opened UL. */
+        var panel = panels[panels.length - 1];
+        if (panel) {
+            /** The second to last opened UL. */
+            var parent_1 = panel.parentElement.closest('.mm-panel');
+            if (parent_1) {
+                this.navigator.openPanel(parent_1);
+                return true;
+            }
+            else {
+                this.drawer.close();
+            }
+        }
+        return false;
     };
     return MmenuLight;
 }());

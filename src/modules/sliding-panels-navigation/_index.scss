@@ -71,13 +71,18 @@ $mmspn_panel_offset: 100% !default;
 }
 
 //Menu header
-.mm-spn {
-    .mm-header {
+.mm-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: $mmspn_item_height; // IE11 fallback
+    height: var(--mm-spn-item-height);
+
+    .mm-btn {
+        height: 100%;
+        background: pink;
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        height: $mmspn_item_height; // IE11 fallback
-        height: var(--mm-spn-item-height);
     }
 }
 
