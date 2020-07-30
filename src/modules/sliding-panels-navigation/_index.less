@@ -1,34 +1,6 @@
-/** Animation duration. */
-$mmspn_transition_duration: 0.3s;
+@import '_variables';
 
-/** Arrow size. */
-$mmspn_arrow_size: 10px !default;
-
-/** Arrow weight. */
-$mmspn_arrow_weight: 2px !default;
-
-/** Border opacity. */
-$mmspn_border_opac: 0.15 !default;
-
-/** Navbar opacity. */
-$mmspn_navbar_opac: 0.4 !default;
-
-/** Arrow opacity. */
-$mmspn_arrow_opac: 0.4 !default;
-
-/** Item height. */
-$mmspn_item_height: 50px !default;
-
-/** Item indent. */
-$mmspn_item_indent: 20px !default;
-
-/** Line height. */
-$mmspn_line_height: 24px !default;
-
-/** Panel offset. */
-$mmspn_panel_offset: 100% !default;
-
-%mmspn-reset {
+.mmspn-reset {
     display: block;
     padding: 0;
     margin: 0;
@@ -37,18 +9,18 @@ $mmspn_panel_offset: 100% !default;
 
 :root {
     /** Height for menu items. */
-    --mm-spn-item-height: #{$mmspn_item_height};
+    --mm-spn-item-height: @mmspn_item_height;
 
     /** Indent for menu items. */
-    --mm-spn-item-indent: #{$mmspn_item_indent};
+    --mm-spn-item-indent: @mmspn_item_indent;
 
     /** Line height for menu items. */
-    --mm-spn-line-height: #{$mmspn_line_height};
+    --mm-spn-line-height: @mmspn_line_height;
 }
 
 //  The menu
 .mm-spn {
-    @extend %mmspn-reset;
+    .mmspn-reset;
 
     width: 100%;
     height: 100%;
@@ -75,7 +47,7 @@ $mmspn_panel_offset: 100% !default;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: $mmspn_item_height; // IE11 fallback
+    height: @mmspn_item_height; // IE11 fallback
     height: var(--mm-spn-item-height);
 
     .mm-btn {
@@ -90,7 +62,7 @@ $mmspn_panel_offset: 100% !default;
 .mm-spn {
     //  All listviews.
     .mm-panel {
-        @extend %mmspn-reset;
+        .mmspn-reset;
 
         //  Enables smooth scrolling.
         -webkit-overflow-scrolling: touch;
@@ -103,17 +75,17 @@ $mmspn_panel_offset: 100% !default;
 
         //  Fix for weird iOS Safari issue:
         //  A fixed element is not visible outside of its parent if its parent is scrollable.
-        width: 100% + $mmspn_panel_offset;
-        padding-right: $mmspn_panel_offset;
+        width: 100% + @mmspn_panel_offset;
+        padding-right: @mmspn_panel_offset;
         //  /Fix
 
-        line-height: $mmspn_line_height; // IE11 fallback
+        line-height: @mmspn_line_height; // IE11 fallback
         line-height: var(--mm-spn-line-height);
 
         overflow: visible;
         overflow-y: auto;
         background: inherit;
-        transition: left $mmspn_transition_duration ease 0s;
+        transition: left @mmspn_transition_duration ease 0s;
 
         cursor: default;
 
@@ -121,14 +93,14 @@ $mmspn_panel_offset: 100% !default;
         &:after {
             content: '';
             display: block;
-            height: $mmspn_item_height; // IE11 fallback
+            height: @mmspn_item_height; // IE11 fallback
             height: var(--mm-spn-item-height);
         }
     }
 
     //Reset for list
     ul {
-        @extend %mmspn-reset;
+        .mmspn-reset;
         background: inherit;
     }
 
@@ -144,7 +116,7 @@ $mmspn_panel_offset: 100% !default;
 
     //  Child listview opened.
     .mm-panel.mm-spn--parent {
-        left: -$mmspn_panel_offset;
+        left: -@mmspn_panel_offset;
         overflow-y: hidden;
     }
 }
@@ -152,7 +124,7 @@ $mmspn_panel_offset: 100% !default;
 //  Listitems
 .mm-spn {
     li {
-        @extend %mmspn-reset;
+        .mmspn-reset;
 
         position: relative;
         background: inherit;
@@ -163,29 +135,29 @@ $mmspn_panel_offset: 100% !default;
             content: '';
             display: block;
             position: absolute;
-            top: $mmspn_item_height / 2; // IE11 fallback
+            top: @mmspn_item_height / 2; // IE11 fallback
             top: calc(var(--mm-spn-item-height) / 2);
-            right: $mmspn_item_height / 2; // IE11 fallback
+            right: @mmspn_item_height / 2; // IE11 fallback
             right: calc(var(--mm-spn-item-height) / 2);
             z-index: 0;
 
-            width: $mmspn_arrow_size;
-            height: $mmspn_arrow_size;
-            border-top: $mmspn_arrow_weight solid;
-            border-right: $mmspn_arrow_weight solid;
+            width: @mmspn_arrow_size;
+            height: @mmspn_arrow_size;
+            border-top: @mmspn_arrow_weight solid;
+            border-right: @mmspn_arrow_weight solid;
             transform: rotate(45deg) translate(0, -50%);
-            opacity: $mmspn_arrow_opac;
+            opacity: @mmspn_arrow_opac;
         }
 
         //  The border.
         &:after {
             content: '';
             display: block;
-            margin-left: $mmspn_item_indent; // IE11 fallback
+            margin-left: @mmspn_item_indent; // IE11 fallback
             margin-left: var(--mm-spn-item-indent);
 
             border-top: 1px solid;
-            opacity: $mmspn_border_opac;
+            opacity: @mmspn_border_opac;
         }
     }
 }
@@ -194,12 +166,12 @@ $mmspn_panel_offset: 100% !default;
 .mm-panel {
     a,
     span {
-        @extend %mmspn-reset;
+        .mmspn-reset;
 
         position: relative;
         z-index: 1;
-        padding: (($mmspn_item_height - $mmspn_line_height) / 2)
-            $mmspn_item_indent; // IE11 fallback
+        padding: ((@mmspn_item_height - @mmspn_line_height) / 2)
+            @mmspn_item_indent; // IE11 fallback
         padding: calc(
                 (var(--mm-spn-item-height) - var(--mm-spn-line-height)) / 2
             )
@@ -213,7 +185,7 @@ $mmspn_panel_offset: 100% !default;
 
         //  Show arrow for opening the submenu.
         &:not(:last-child) {
-            width: calc(100% - #{$mmspn_item_height}); // IE11 fallback
+            width: calc(100% - @mmspn_item_height); // IE11 fallback
             width: calc(100% - var(--mm-spn-item-height));
 
             //  Border on the right.
@@ -225,7 +197,7 @@ $mmspn_panel_offset: 100% !default;
                 right: 0;
                 bottom: 0;
                 border-right: 1px solid;
-                opacity: $mmspn_border_opac;
+                opacity: @mmspn_border_opac;
             }
         }
     }
@@ -236,5 +208,5 @@ $mmspn_panel_offset: 100% !default;
     }
 }
 
-@import 'navbar';
-@import 'vertical';
+@import '_navbar';
+@import '_vertical';

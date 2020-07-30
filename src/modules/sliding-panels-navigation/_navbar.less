@@ -1,9 +1,11 @@
+@import "_variables";
+
 .mm-spn {
     //  Listviews
     &.mm-spn--navbar {
         //  All listviews.
         .mm-panel {
-            top: $mmspn_item_height + 1; // IE11 fallback
+            top: @mmspn_item_height + 1; // IE11 fallback
             top: calc(var(--mm-spn-item-height) + 1px);
 
             //  The border.
@@ -15,7 +17,7 @@
                 z-index: 2;
                 width: 100%;
                 border-top: 1px solid currentColor;
-                opacity: $mmspn_border_opac;
+                opacity: @mmspn_border_opac;
             }
         }
     }

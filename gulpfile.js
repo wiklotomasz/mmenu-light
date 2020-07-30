@@ -9,9 +9,8 @@
 const { src, dest, watch, series, parallel } = require('gulp');
 
 //  For CSS
-const sass = require('gulp-sass');
-const autoprefixer = require('gulp-autoprefixer');
-const cleancss = require('gulp-clean-css');
+var less = require('gulp-less');
+var autoprefixer = require('gulp-autoprefixer');
 
 //  For JS
 const typescript = require('gulp-typescript');
@@ -27,10 +26,9 @@ const esmDir = 'esm';
 
 /** CSS task */
 const css = () => {
-    return src(inputDir + '/**/*.scss')
-        .pipe(sass().on('error', sass.logError))
-        .pipe(autoprefixer(['> 5%', 'last 5 versions']))
-        .pipe(cleancss())
+    return src(inputDir + '/**/*.less')
+        .pipe(less())
+        .pipe(autoprefixer({overrideBrowserslist: ['last 2 versions','>5%']}))
         .pipe(dest(outputDir));
 };
 
@@ -101,7 +99,7 @@ exports.default = parallel(css, js);
 	$ gulp watch
 */
 exports.watch = cb => {
-    watch(inputDir + '/**/*.scss', css);
+    watch(inputDir + '/**/*.less', css);
     watch(inputDir + '/**/*.ts', js);
     cb();
 };
