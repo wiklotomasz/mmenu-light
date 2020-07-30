@@ -40,14 +40,14 @@ var MmOffCanvasDrawer = /** @class */ (function () {
      */
     MmOffCanvasDrawer.prototype.open = function () {
         this.wrapper.classList.add("mm-ocd--open");
-        document.body.classList.add("mm-ocd-opened");
+        document.documentElement.classList.add("mm-ocd-opened");
     };
     /**
      * Close the drawer.
      */
     MmOffCanvasDrawer.prototype.close = function () {
         this.wrapper.classList.remove("mm-ocd--open");
-        document.body.classList.remove("mm-ocd-opened");
+        document.documentElement.classList.remove("mm-ocd-opened");
     };
     return MmOffCanvasDrawer;
 }());

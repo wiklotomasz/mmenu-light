@@ -18,7 +18,7 @@ $mmocd_transition_duration: 0.3s !default;
 }
 
 //  The rest of the page
-body.mm-ocd-opened {
+html.mm-ocd-opened {
     //  Somewhat prevents scrolling.
     overflow-y: hidden;
     overscroll-behavior: none;

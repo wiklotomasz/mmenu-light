@@ -53,7 +53,7 @@ export default class MmOffCanvasDrawer {
      */
     open() {
         this.wrapper.classList.add(`mm-ocd--open`);
-        document.body.classList.add(`mm-ocd-opened`);
+        document.documentElement.classList.add(`mm-ocd-opened`);
     }
 
     /**
@@ -61,6 +61,6 @@ export default class MmOffCanvasDrawer {
      */
     close() {
         this.wrapper.classList.remove(`mm-ocd--open`);
-        document.body.classList.remove(`mm-ocd-opened`);
+        document.documentElement.classList.remove(`mm-ocd-opened`);
     }
 }
