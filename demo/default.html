@@ -108,7 +108,8 @@
 			for (let i = 0; i < NavOpeners.length; i++) {
 				NavOpeners[i].addEventListener( 'click', evnt => {
 					evnt.preventDefault();
-					var panelElement = document.querySelector(`[data-panel-id="${evnt.target.hash}"`);
+					const navOpener = evnt.target.closest('.nav-opener');
+					var panelElement = document.querySelector(`[data-panel-id="${navOpener.hash}"`);
 					menu.navigator.openPanel(panelElement);
 					drawer.open();
 				});
