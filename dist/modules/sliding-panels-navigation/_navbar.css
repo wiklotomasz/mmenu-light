@@ -7,10 +7,14 @@
 /** Item height. */
 /** Item indent. */
 /** Line height. */
+/** Header margin-bottom. */
+/** Header height. */
+/** Searchbox margin-bottom. */
+/** Searchbox height. */
 /** Panel offset. */
+/** Panel top offset. */
 .mm-spn.mm-spn--navbar .mm-panel {
-  top: 51px;
-  top: calc(var(--mm-spn-item-height) + 1px);
+  top: 177px;
 }
 .mm-spn.mm-spn--navbar .mm-panel:before {
   content: '';

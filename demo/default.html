@@ -17,27 +17,28 @@
 				Demo
 				<nav id="menu" class="mm-spn">
 					<div class="mm-header">
-						<div href="#back" class="mm-btn mm-btn_prev" aria-label="Close submenu">
-							Close submenu
-						</div>
-						<h5 class="mm-header__title" id="mm-header__title">Menu</h5>
-						<div href="#close" class="mm-btn mm-btn_close" aria-label="Close main menu">
-							Close main menu
+						<div class="mm-header__wrapper">
+							<div href="#back" class="mm-btn mm-btn_prev" aria-label="Close submenu">
+								Close submenu
+							</div>
+							<h5 class="mm-header__title" id="mm-header__title">Menu</h5>
+							<div href="#close" class="mm-btn mm-btn_close" aria-label="Close main menu">
+								Close main menu
+							</div>
 						</div>
 					</div>
-					<div class="mm-panel" data-panel-id="#mainmenu">
+					<div class="mm-searchbox">
 						<input type="text" value="searchbox" />
+					</div>
+					<div class="mm-panel" data-panel-id="#mainmenu">
 						<ul>
 							<li class="Selected"><a href="#">Home</a></li>
 							<li><span>Producte</span>
 								<div class="mm-panel" data-panel-id="#aboutus">
-									<input type="text" value="searchbox" />
 									<ul>
 										<li><a href="#about/history">History</a></li>
 										<li><span>The team</span>
 											<div class="mm-panel" data-panel-id="#theteam">
-												<input type="text" value="searchbox" />
-												<input type="text" value="searchbox" />
 												<ul>
 													<li><a href="#about/team/management">Management</a></li>
 													<li><a href="#about/team/sales">Sales</a></li>
@@ -47,19 +48,15 @@
 										</li>
 										<li><a href="#about/address">Our address</a></li>
 									</ul>
-									<input type="text" value="searchbox" />
 								</div>
 							</li>
 							<li><span>Services</span>
 								<div class="mm-panel" data-panel-id="#aboutus">
-									<input type="text" value="searchbox" />
 									<ul>
 										<li><a href="#">Ratgeber & Rechtsportal</a></li>
 										<li><a href="#">Freundschaftswerbung</a></li>
 										<li><span>Services für ERGO Kunden</span>
 											<div class="mm-panel" data-panel-id="#theteam">
-												<input type="text" value="searchbox" />
-												<input type="text" value="searchbox" />
 												<ul>
 													<li><a href="#about/team/management">Management</a></li>
 													<li><a href="#about/team/sales">Sales</a></li>
@@ -75,7 +72,6 @@
 										</li>
 										<li><a href="#">Alle Services im Überblick</a></li>
 									</ul>
-									<input type="text" value="searchbox" />
 								</div>
 							</li>
 							<li><a href="#contact">Contact</a></li>

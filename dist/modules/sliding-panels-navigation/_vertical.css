@@ -7,7 +7,12 @@
 /** Item height. */
 /** Item indent. */
 /** Line height. */
+/** Header margin-bottom. */
+/** Header height. */
+/** Searchbox margin-bottom. */
+/** Searchbox height. */
 /** Panel offset. */
+/** Panel top offset. */
 .mm-spn.mm-spn--vertical {
   overflow-y: auto;
 }
@@ -19,11 +24,9 @@
 .mm-spn.mm-spn--vertical ul ul {
   display: none;
   padding-left: 20px;
-  padding-left: var(--mm-spn-item-indent);
 }
 .mm-spn.mm-spn--vertical ul ul:after {
   height: 25px;
-  height: calc(var(--mm-spn-item-height) / 2);
 }
 .mm-spn.mm-spn--vertical ul.mm-spn--open {
   display: block;

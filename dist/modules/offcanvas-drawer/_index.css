@@ -1,11 +1,3 @@
-:root {
-  /** Width for the drawer. */
-  --mm-ocd-width: 80%;
-  /** Min-width for the drawer. */
-  --mm-ocd-min-width: 200px;
-  /** Max-width for the drawer. */
-  --mm-ocd-max-width: 440px;
-}
 html.mm-ocd-opened {
   overflow-y: hidden;
   -ms-scroll-chaining: none;
@@ -43,11 +35,8 @@ html.mm-ocd-opened {
   bottom: 0;
   z-index: 2;
   width: 80%;
-  width: var(--mm-ocd-width);
   min-width: 200px;
-  min-width: var(--mm-ocd-min-width);
   max-width: 440px;
-  max-width: var(--mm-ocd-max-width);
   background: #fff;
   -webkit-transition-property: -webkit-transform;
   transition-property: -webkit-transform;
@@ -78,11 +67,8 @@ html.mm-ocd-opened {
   bottom: 0;
   z-index: 3;
   width: calc(100% - 80%);
-  width: calc(100% - var(--mm-ocd-width));
   min-width: calc(100% - 440px);
-  min-width: calc(100% - var(--mm-ocd-max-width));
   max-width: calc(100% - 200px);
-  max-width: calc(100% - var(--mm-ocd-min-width));
   background: rgba(3, 2, 1, 0);
 }
 .mm-ocd--left .mm-ocd__backdrop {

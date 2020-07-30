@@ -5,18 +5,6 @@
 
 @mmocd_transition_duration: 0.3s;
 
-//  CSS variables
-:root {
-    /** Width for the drawer. */
-    --mm-ocd-width: @mmocd_width;
-
-    /** Min-width for the drawer. */
-    --mm-ocd-min-width: @mmocd_min_width;
-
-    /** Max-width for the drawer. */
-    --mm-ocd-max-width: @mmocd_max_width;
-}
-
 //  The rest of the page
 html.mm-ocd-opened {
     //  Somewhat prevents scrolling.
@@ -54,12 +42,9 @@ html.mm-ocd-opened {
     bottom: 0;
     z-index: 2;
 
-    width: @mmocd_width; // IE11 fallback
-    width: var(--mm-ocd-width);
-    min-width: @mmocd_min_width; // IE11 fallback
-    min-width: var(--mm-ocd-min-width);
-    max-width: @mmocd_max_width; // IE11 fallback
-    max-width: var(--mm-ocd-max-width);
+    width: @mmocd_width;
+    min-width: @mmocd_min_width;
+    max-width: @mmocd_max_width;
 
     background: #fff;
     transition-property: transform;
@@ -88,12 +73,9 @@ html.mm-ocd-opened {
     bottom: 0;
     z-index: 3;
 
-    width: calc(100% - @mmocd_width); // IE11 fallback
-    width: calc(100% - var(--mm-ocd-width));
-    min-width: calc(100% - @mmocd_max_width); // IE11 fallback
-    min-width: calc(100% - var(--mm-ocd-max-width));
-    max-width: calc(100% - @mmocd_min_width); // IE11 fallback
-    max-width: calc(100% - var(--mm-ocd-min-width));
+    width: calc(100% - @mmocd_width);
+    min-width: calc(100% - @mmocd_max_width);
+    max-width: calc(100% - @mmocd_min_width);
 
     background: rgba(3, 2, 1, 0);
 
