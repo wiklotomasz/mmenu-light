@@ -143,7 +143,7 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
             if (target.closest('span')) {
                 listitem = target.parentElement;
             }
-            else if (target.closest('li')) {
+            else if (target.closest('.mm-listitem')) {
                 listitem = target;
             }
             else {

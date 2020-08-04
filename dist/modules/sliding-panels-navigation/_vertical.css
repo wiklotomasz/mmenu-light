@@ -16,26 +16,26 @@
 .mm-spn.mm-spn--vertical {
   overflow-y: auto;
 }
-.mm-spn.mm-spn--vertical ul {
+.mm-spn.mm-spn--vertical .mm-listview {
   width: 100%;
   padding-right: 0;
   position: static;
 }
-.mm-spn.mm-spn--vertical ul ul {
+.mm-spn.mm-spn--vertical .mm-listview .mm-listview {
   display: none;
   padding-left: 20px;
 }
-.mm-spn.mm-spn--vertical ul ul:after {
+.mm-spn.mm-spn--vertical .mm-listview .mm-listview:after {
   height: 25px;
 }
-.mm-spn.mm-spn--vertical ul.mm-spn--open {
+.mm-spn.mm-spn--vertical .mm-listview.mm-spn--open {
   display: block;
 }
-.mm-spn.mm-spn--vertical li.mm-spn--open:before {
+.mm-spn.mm-spn--vertical .mm-listitem.mm-spn--open:before {
   -webkit-transform: rotate(135deg) translate(-50%, 0);
           transform: rotate(135deg) translate(-50%, 0);
 }
-.mm-spn.mm-spn--vertical ul ul li:last-child:after {
+.mm-spn.mm-spn--vertical .mm-listview .mm-listview .mm-listitem:last-child:after {
   content: none;
   display: none;
 }

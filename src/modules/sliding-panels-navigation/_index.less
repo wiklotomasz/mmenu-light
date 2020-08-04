@@ -130,13 +130,16 @@
 
 //  Listitems
 .mm-spn {
+    .mm-listitem,
     li {
         .mmspn-reset;
 
         position: relative;
         background: inherit;
         cursor: pointer;
+    }
 
+    .mm-listitem {
         //  The arrow.
         &:before {
             content: '';
@@ -203,6 +206,37 @@
     //  Show arrow for opening the submenu.
     span {
         background: transparent;
+    }
+}
+
+//Listitem wrapper
+.mm-wrapper {
+    display: flex;
+    background: orange;
+    padding-left: 35px;
+
+    &__inside {
+        &--left {
+            margin-left: -35px;
+        }
+
+        &--right {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+    }
+
+    &__icon {
+        padding-right: 15px;
+    }
+
+    &__arrow {
+        margin-left: auto;
+    }
+
+    &__button {
+        width: 100%;
     }
 }
 

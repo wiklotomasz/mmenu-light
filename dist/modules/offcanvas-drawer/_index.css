@@ -34,9 +34,9 @@ html.mm-ocd-opened {
   top: 0;
   bottom: 0;
   z-index: 2;
-  width: 80%;
+  width: 100%;
   min-width: 200px;
-  max-width: 440px;
+  max-width: 432px;
   background: #fff;
   -webkit-transition-property: -webkit-transform;
   transition-property: -webkit-transform;
@@ -66,8 +66,8 @@ html.mm-ocd-opened {
   top: 0;
   bottom: 0;
   z-index: 3;
-  width: calc(100% - 80%);
-  min-width: calc(100% - 440px);
+  width: calc(100% - 100%);
+  min-width: calc(100% - 432px);
   max-width: calc(100% - 200px);
   background: rgba(3, 2, 1, 0);
 }

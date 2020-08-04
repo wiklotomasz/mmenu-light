@@ -9,7 +9,7 @@
 
     //  Listviews
     &.mm-spn--vertical {
-        ul {
+        .mm-listview {
             //  Undo the fix for weird iOS Safari issue.
             width: 100%;
             padding-right: 0;
@@ -20,7 +20,7 @@
             position: static;
 
             //  Submenus
-            ul {
+            .mm-listview {
                 display: none;
                 padding-left: @mmspn_item_indent;
 
@@ -40,12 +40,12 @@
     //  Listitems
     &.mm-spn--vertical {
         //  Rotate the button.
-        li.mm-spn--open:before {
+        .mm-listitem.mm-spn--open:before {
             transform: rotate(135deg) translate(-50%, 0);
         }
 
         //  Remove border from last subchild.
-        ul ul li {
+        .mm-listview .mm-listview .mm-listitem {
             &:last-child:after {
                 content: none;
                 display: none;
