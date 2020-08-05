@@ -16,13 +16,3 @@
 .mm-spn.mm-spn--navbar .mm-panel {
   top: 177px;
 }
-.mm-spn.mm-spn--navbar .mm-panel:before {
-  content: '';
-  display: block;
-  position: fixed;
-  top: inherit;
-  z-index: 2;
-  width: 100%;
-  border-top: 1px solid currentColor;
-  opacity: 0.15;
-}

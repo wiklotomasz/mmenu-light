@@ -1,4 +1,5 @@
 @import '_variables';
+@import '_additional-variables';
 
 .mmspn-reset {
     display: block;
@@ -27,16 +28,16 @@
     //  This creates a new viewport from the menu so the panels can be fixed
     transform: translateX(0px);
 
-    color: #444;
-    background: #f3f3f3;
+    color: @theme-darkest-gray;
+    background: @theme-white;
 }
 
 //Menu header
 .mm-header {
-    height: @mmspn_header_height; // IE11 fallback
     height: @mmspn_header_height;
-    margin-bottom: @mmspn_searchbox_margin-bottom; // IE11 fallback
     margin-bottom: @mmspn_searchbox_margin-bottom;
+    background: @theme-brand-color;
+    color: @theme-white;
 
     &__wrapper {
         display: flex;
@@ -47,15 +48,20 @@
     }
 
     &__title {
+        margin: 0;
+        font-size: 14px;
         //  Ellipsis.
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+
+        @media (min-width: (@breakpoint-l)) {
+            font-size: 16px;
+        }
     }
 
     .mm-btn {
         height: 100%;
-        background: pink;
         display: flex;
         align-items: center;
     }
@@ -65,6 +71,13 @@
 .mm-searchbox {
     height: @mmspn_searchbox_height;
     margin-bottom: @mmspn_header_margin-bottom;
+    text-align: center;
+
+    &__input {
+        padding: 12px 50px;
+        border-radius: 32px;
+        background-color: #F2F2F2;
+    }
 }
 
 //  Listviews
@@ -146,7 +159,7 @@
             display: block;
             position: absolute;
             top: @mmspn_item_height / 2;
-            right: @mmspn_item_height / 2;
+            right: @mmspn_item_indent;
             z-index: 0;
 
             width: @mmspn_arrow_size;
@@ -155,16 +168,6 @@
             border-right: @mmspn_arrow_weight solid;
             transform: rotate(45deg) translate(0, -50%);
             opacity: @mmspn_arrow_opac;
-        }
-
-        //  The border.
-        &:after {
-            content: '';
-            display: block;
-            margin-left: @mmspn_item_indent;
-
-            border-top: 1px solid;
-            opacity: @mmspn_border_opac;
         }
     }
 }
@@ -237,6 +240,18 @@
 
     &__button {
         width: 100%;
+    }
+}
+
+//Menu box
+.mm-box {
+    &:before {
+        content: '';
+        display: block;
+        top: inherit;
+        z-index: 2;
+        width: 100%;
+        border-top: 1px solid @theme-light-gray;
     }
 }
 

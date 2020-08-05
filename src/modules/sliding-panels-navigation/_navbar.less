@@ -1,4 +1,5 @@
 @import "_variables";
+@import '_additional-variables';
 
 .mm-spn {
     //  Listviews
@@ -6,18 +7,6 @@
         //  All listviews.
         .mm-panel {
             top: @mmspn_panel_top_offset + 1;
-
-            //  The border.
-            &:before {
-                content: '';
-                display: block;
-                position: fixed;
-                top: inherit;
-                z-index: 2;
-                width: 100%;
-                border-top: 1px solid currentColor;
-                opacity: @mmspn_border_opac;
-            }
         }
     }
 }
