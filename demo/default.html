@@ -190,7 +190,7 @@
 				document.querySelector( '#menu' )
 			);
 
-			var navigator = menu.navigation();
+			var navigation = menu.navigation();
 			var drawer = menu.offcanvas();
 
 			//Open the menu on selected panel
@@ -201,7 +201,7 @@
 					evnt.preventDefault();
 					const navOpener = evnt.target.closest('.nav-opener');
 					var panelElement = document.querySelector(`[data-panel-id="${navOpener.hash}"`);
-					menu.navigator.openPanel(panelElement);
+					navigation.openPanel(panelElement);
 					drawer.open();
 				});
 			}
