@@ -95,6 +95,7 @@ html.mm-ocd-opened {
 /** Arrow opacity. */
 /** Item height. */
 /** Item indent. */
+/** Item indent. */
 /** Line height. */
 /** Header margin-bottom. */
 /** Header height. */
@@ -169,7 +170,7 @@ html.mm-ocd-opened {
 }
 .mm-searchbox {
   height: 48px;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
   text-align: center;
 }
 .mm-searchbox__input {
@@ -198,11 +199,6 @@ html.mm-ocd-opened {
   -webkit-transition: left 0.3s ease 0s;
   transition: left 0.3s ease 0s;
   cursor: default;
-}
-.mm-spn .mm-panel:after {
-  content: '';
-  display: block;
-  height: 48px;
 }
 .mm-spn ul {
   display: block;
@@ -258,6 +254,7 @@ html.mm-ocd-opened {
   position: relative;
   z-index: 1;
   padding: 12px 48px;
+  padding-left: 60px;
 }
 .mm-panel a {
   background: inherit;
@@ -285,7 +282,6 @@ html.mm-ocd-opened {
   display: -ms-flexbox;
   display: flex;
   background: orange;
-  padding-left: 35px;
 }
 .mm-wrapper__inside--left {
   margin-left: -35px;
@@ -298,14 +294,46 @@ html.mm-ocd-opened {
       flex-wrap: wrap;
   width: 100%;
 }
+.mm-wrapper__text {
+  font-size: 14px;
+}
+.mm-wrapper__text p {
+  margin: 4px;
+}
+.mm-wrapper__heading {
+  color: #333333;
+}
+@media (min-width: 912px) {
+  .mm-wrapper__heading {
+    font-size: 16px;
+  }
+}
+.mm-wrapper__subtext {
+  line-height: 20px;
+  color: #737373;
+}
+.mm-wrapper__text + .mm-wrapper__button {
+  padding-top: 20px;
+}
 .mm-wrapper__icon {
   padding-right: 15px;
+  width: 20px;
+  text-align: right;
 }
 .mm-wrapper__arrow {
   margin-left: auto;
 }
-.mm-wrapper__button {
+.mm-wrapper__button,
+.mm-wrapper button {
   width: 100%;
+}
+.mm-wrapper--phone .mm-wrapper__heading {
+  font-size: 16px;
+  font-weight: bold;
+}
+.mm-wrapper--phone .mm-wrapper__heading,
+.mm-wrapper--phone .mm-wrapper__icon {
+  color: #8e0038;
 }
 .mm-box:before {
   content: '';
@@ -314,6 +342,18 @@ html.mm-ocd-opened {
   z-index: 2;
   width: 100%;
   border-top: 1px solid #d9d9d9;
+}
+.mm-box,
+.mm-box:before,
+.mm-panel > .mm-listview {
+  padding-bottom: 21px;
+}
+@media (min-width: 912px) {
+  .mm-box,
+  .mm-box:before,
+  .mm-panel > .mm-listview {
+    padding-bottom: 36px;
+  }
 }
 .mm-spn.mm-spn--navbar .mm-panel {
   top: 177px;

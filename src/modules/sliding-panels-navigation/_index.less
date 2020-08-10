@@ -70,7 +70,7 @@
 //Menu searchbox
 .mm-searchbox {
     height: @mmspn_searchbox_height;
-    margin-bottom: @mmspn_header_margin-bottom;
+    margin-bottom: @mmspn_header_margin-bottom - 12px;
     text-align: center;
 
     &__input {
@@ -109,13 +109,6 @@
         transition: left @mmspn_transition_duration ease 0s;
 
         cursor: default;
-
-        //  Because padding-bottom doesn't work if it is scrollable.
-        &:after {
-            content: '';
-            display: block;
-            height: @mmspn_item_height;
-        }
     }
 
     //Reset for list
@@ -181,6 +174,7 @@
         position: relative;
         z-index: 1;
         padding: ((@mmspn_item_height - @mmspn_line_height) / 2) @mmspn_item_indent;
+        padding-left: @mmspn_item_indent_left;
     }
 
     a {
@@ -215,8 +209,6 @@
 //Listitem wrapper
 .mm-wrapper {
     display: flex;
-    background: orange;
-    padding-left: 35px;
 
     &__inside {
         &--left {
@@ -230,16 +222,57 @@
         }
     }
 
+    &__text {
+        font-size: 14px;
+        
+        p {
+            margin: 4px;
+        }
+    }
+
+    &__heading {
+        color: @theme-darkest-gray;
+
+        @media (min-width: (@breakpoint-l)) {
+            font-size: 16px;
+        }
+    }
+
+    &__subtext {
+        line-height: 20px;
+        color: @theme-darker-gray
+    }
+
+    &__text + &__button {
+        padding-top: 20px;
+    }
+
     &__icon {
         padding-right: 15px;
+        width: 20px;
+        text-align: right;
     }
 
     &__arrow {
         margin-left: auto;
     }
 
-    &__button {
+    &__button,
+    button {
         width: 100%;
+    }
+}
+
+//Listitem wrapper phone
+.mm-wrapper--phone {
+    .mm-wrapper__heading {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .mm-wrapper__heading,
+    .mm-wrapper__icon {
+        color: @theme-brand-color;
     }
 }
 
@@ -252,6 +285,17 @@
         z-index: 2;
         width: 100%;
         border-top: 1px solid @theme-light-gray;
+    }
+}
+
+//Padding between sections
+.mm-box,
+.mm-box:before,
+.mm-panel > .mm-listview {
+    padding-bottom: 21px; // 12px from ul + 21px = 33px
+
+    @media (min-width: (@breakpoint-l)) {
+        padding-bottom: 36px; // 12px from ul + 36px = 48px
     }
 }
 
