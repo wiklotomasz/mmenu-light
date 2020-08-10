@@ -178,6 +178,14 @@ html.mm-ocd-opened {
   border-radius: 32px;
   background-color: #F2F2F2;
 }
+.results__header {
+  padding-left: 24px;
+}
+.results__header p {
+  font-size: 12px;
+  font-weight: bold;
+  color: #333333;
+}
 .mm-spn .mm-panel {
   display: block;
   padding: 0;
@@ -281,7 +289,6 @@ html.mm-ocd-opened {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background: orange;
 }
 .mm-wrapper__inside--left {
   margin-left: -35px;
@@ -298,7 +305,7 @@ html.mm-ocd-opened {
   font-size: 14px;
 }
 .mm-wrapper__text p {
-  margin: 4px;
+  margin-bottom: 4px;
 }
 .mm-wrapper__heading {
   color: #333333;
