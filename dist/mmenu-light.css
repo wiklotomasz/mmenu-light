@@ -313,6 +313,7 @@ html.mm-ocd-opened {
   font-size: 14px;
 }
 .mm-wrapper__text p {
+  margin-top: 0;
   margin-bottom: 4px;
 }
 .mm-wrapper__heading {
