@@ -19,11 +19,15 @@
 					<div class="mm-header">
 						<div class="mm-header__wrapper">
 							<a href="#back" class="mm-btn mm-btn_prev" aria-label="Close submenu">
-								Close submenu
+								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+									<path id="arrowlefticon-a" d="M18.3333333,19.4939759 L8.19047619,11.9759036 L18.3333333,4.45783133 L18.3333333,2 L6.76190476,10.5301205 C6.28571429,10.8674699 6,11.3975904 6,11.9759036 C6,12.5542169 6.28571429,13.0843373 6.76190476,13.4216867 L18.3333333,22 L18.3333333,19.4939759 Z"/>
+								</svg>
 							</a>
 							<h5 class="mm-header__title" id="mm-header__title">Menu</h5>
 							<a href="#close" class="mm-btn mm-btn_close" aria-label="Close main menu">
-								Close main menu
+								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+									<polygon id="closeborderlessicon-a" points="12 10.727 17.25 5.477 18.523 6.75 13.273 12 18.523 17.25 17.25 18.523 12 13.273 6.75 18.523 5.477 17.25 10.727 12 5.477 6.75 6.75 5.477"/>
+								</svg>
 							</a>
 						</div>
 					</div>
@@ -35,11 +39,11 @@
 					<div class="mm-panel" data-panel-id="#mainmenu">
 						<ul class="mm-listview">
 							<li class="mm-listitem"><a href="#">Home</a></li>
-							<li class="mm-listitem"><span>Producte</span>
+							<li class="mm-listitem"><span class="mm-listitem__header">Producte</span>
 								<div class="mm-panel" data-panel-id="#aboutus">
 									<ul class="mm-listview">
 										<li class="mm-listitem"><a href="#about/history">History</a></li>
-										<li class="mm-listitem"><span>The team</span>
+										<li class="mm-listitem"><span class="mm-listitem__header">The team</span>
 											<div class="mm-panel" data-panel-id="#theteam">
 												<ul class="mm-listview">
 													<li class="mm-listitem"><a href="#about/team/management">Management</a></li>
@@ -52,12 +56,12 @@
 									</ul>
 								</div>
 							</li>
-							<li class="mm-listitem"><span>Services</span>
+							<li class="mm-listitem"><span class="mm-listitem__header">Services</span>
 								<div class="mm-panel" data-panel-id="#aboutus">
 									<ul class="mm-listview">
 										<li class="mm-listitem"><a href="#">Ratgeber & Rechtsportal</a></li>
 										<li class="mm-listitem"><a href="#">Freundschaftswerbung</a></li>
-										<li class="mm-listitem"><span>Services für ERGO Kunden</span>
+										<li class="mm-listitem"><span class="mm-listitem__header">Services für ERGO Kunden</span>
 											<div class="mm-panel" data-panel-id="#theteam">
 												<ul class="mm-listview">
 													<li class="mm-listitem"><a href="#about/team/management">Management</a></li>
@@ -121,7 +125,7 @@
 									</div>
 								</div>
 							</li>
-							<li class="mm-listitem"><span class="no-display">Suche</span>
+							<li class="mm-listitem"><span class="mm-listitem__header no-display">Suche</span>
 								<div class="mm-panel" data-panel-id="#search">
 									<div class="results__header">
 										<p>Beliebte Suchbegriffe</p>

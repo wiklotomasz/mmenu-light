@@ -64,6 +64,18 @@
         height: 100%;
         display: flex;
         align-items: center;
+
+        &_prev {
+            padding-left: 24px;
+        }
+
+        &_close {
+            padding-right: 24px;
+        }
+
+        svg {
+            fill: @theme-white;
+        }
     }
 }
 
@@ -154,25 +166,6 @@
         background: inherit;
         cursor: pointer;
     }
-
-    .mm-listitem {
-        //  The arrow.
-        &:before {
-            content: '';
-            display: block;
-            position: absolute;
-            top: @mmspn_item_height / 2;
-            right: @mmspn_item_indent;
-            z-index: 0;
-
-            width: @mmspn_arrow_size;
-            height: @mmspn_arrow_size;
-            border-top: @mmspn_arrow_weight solid;
-            border-right: @mmspn_arrow_weight solid;
-            transform: rotate(45deg) translate(0, -50%);
-            opacity: @mmspn_arrow_opac;
-        }
-    }
 }
 
 //  Anchors
@@ -191,28 +184,44 @@
         background: inherit;
         color: inherit;
         text-decoration: none;
+    }
+}
 
-        //  Show arrow for opening the submenu.
-        &:not(:last-child) {
-            width: calc(100% - @mmspn_item_height);
+// Anchors arrows and hover effect
+.mm-listitem {
+    // Add arrow to parent
+    & > span:before {
+        content: '';
+        background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%0A%20%20%3Cpath%20id%3D%22arrowrighticon-a%22%20d%3D%22M6%2C19.4939759%20L16.1428571%2C11.9759036%20L6%2C4.45783133%20L6%2C2%20L17.5714286%2C10.5301205%20C18.047619%2C10.8674699%2018.3333333%2C11.3975904%2018.3333333%2C11.9759036%20C18.3333333%2C12.5542169%2018.047619%2C13.0843373%2017.5714286%2C13.4216867%20L6%2C22%20L6%2C19.4939759%20Z%22/%3E%0A%3C/svg%3E%0A');
+        background-repeat: no-repeat;
+        background-size: contain;
+        display: block;
+        position: absolute;
+        right: @mmspn_item_indent;
+        z-index: 0;
+        width: @mmspn_arrow_size;
+        height: @mmspn_arrow_size;
 
-            //  Border on the right.
-            &:after {
-                content: '';
-                display: block;
-                position: absolute;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                border-right: 1px solid;
-                opacity: @mmspn_border_opac;
-            }
+        @media (min-width: (@breakpoint-l)) {
+            width: @mmspn_arrow_size--desktop;
+            height: @mmspn_arrow_size--desktop;
         }
     }
 
-    //  Show arrow for opening the submenu.
-    span {
-        background: transparent;
+    //Add hover and focus effect on desktop
+    @media (min-width: (@breakpoint-l)) {
+        & > a:hover,
+        & > a:focus,
+        & > span:hover,
+        & > span:focus {
+            background: @theme-lightest-gray;
+            color: @theme-brand-color;
+        }
+
+        & > span:focus:before,
+        & > span:hover:before {
+            filter: invert(8%) sepia(96%) saturate(5917%) hue-rotate(327deg) brightness(75%) contrast(111%);
+        }
     }
 }
 
@@ -259,7 +268,7 @@
 
     &__icon {
         padding-right: 15px;
-        width: 20px;
+        width: 35px;
         text-align: right;
     }
 
