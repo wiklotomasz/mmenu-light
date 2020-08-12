@@ -13,6 +13,8 @@ var MmenuLight = /** @class */ (function () {
     function MmenuLight(menu) {
         //  Store the menu node.
         this.menu = menu;
+        // Init history back functionality
+        this.handleBackButton();
     }
     /**
      * Add navigation for the menu.
@@ -44,6 +46,48 @@ var MmenuLight = /** @class */ (function () {
             this.drawer.content.append(this.menu);
         }
         return this.drawer;
+    };
+    MmenuLight.prototype.handleBackButton = function () {
+        var _this = this;
+        var _menu = '#openmenu';
+        var states = [];
+        //create history breadcrumbs
+        var setStates = function () {
+            states = [_menu];
+            var openPanels = _this.menu.querySelectorAll('.mm-spn--open');
+            openPanels.forEach(function (panel) {
+                states.push(panel.dataset.panelId);
+            });
+        };
+        document.addEventListener('open:finish', function () {
+            setStates();
+            history.pushState(null, document.title, _menu);
+        });
+        document.addEventListener('openPanel:finish', function () {
+            setStates();
+        });
+        //back menu or close menu on history back
+        window.addEventListener('popstate', function () {
+            if (_this.drawer.isMenuOpen) { //sprawdz czy menu jest otwarte
+                if (states.length) {
+                    states = states.slice(0, -1);
+                    var hash = states[states.length - 1];
+                    if (hash == _menu) {
+                        _this.drawer.close(false);
+                    }
+                    else {
+                        _this.navigator.openPanel(_this.menu.querySelector("[data-panel-id=\"" + hash + "\""));
+                        history.pushState(null, document.title, _menu);
+                    }
+                }
+            }
+        });
+        //set default history on menu close
+        document.addEventListener('close:finish', function () {
+            states = [];
+            history.back();
+            history.pushState(null, document.title, location.pathname + location.search);
+        });
     };
     MmenuLight.prototype.handleClosings = function () {
         /** The opened ULs. */

@@ -113,6 +113,8 @@ export default class MmSlidingPanelsNavigation {
                 parent.classList.add(`mm-spn--parent`);
                 parent = parent.parentElement.closest('.mm-panel');
             }
+            
+            document.dispatchEvent(new Event('openPanel:finish'));
         }
 
         //  Vertical submenus
@@ -156,7 +158,6 @@ export default class MmSlidingPanelsNavigation {
         if (!panel) {
             panel = this.node.querySelector('.mm-panel');
         }
-        this.openPanel(panel);
     }
 
     /**

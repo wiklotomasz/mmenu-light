@@ -76,6 +76,7 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
                 parent_1.classList.add("mm-spn--parent");
                 parent_1 = parent_1.parentElement.closest('.mm-panel');
             }
+            document.dispatchEvent(new Event('openPanel:finish'));
         }
         //  Vertical submenus
         else {
@@ -111,7 +112,6 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
         if (!panel) {
             panel = this.node.querySelector('.mm-panel');
         }
-        this.openPanel(panel);
     };
     /**
      * Initialize the click event handlers.

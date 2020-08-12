@@ -15,7 +15,7 @@
 			<div class="header">
 				<a class="nav-opener" href="#mainmenu"><span></span></a>
 				Demo
-				<nav id="menu" class="mm-spn">
+				<nav id="mainmenu" class="mm-spn">
 					<div class="mm-header">
 						<div class="mm-header__wrapper">
 							<a href="#back" class="mm-btn mm-btn_prev" aria-label="Close submenu">
@@ -121,7 +121,7 @@
 									</div>
 								</div>
 							</li>
-							<li class="mm-listitem">
+							<li class="mm-listitem"><span class="no-display">Suche</span>
 								<div class="mm-panel" data-panel-id="#search">
 									<div class="results__header">
 										<p>Beliebte Suchbegriffe</p>
@@ -254,7 +254,7 @@
 		<script src="../dist/mmenu-light.js"></script>
 		<script>
 			var menu = new MmenuLight(
-				document.querySelector( '#menu' )
+				document.querySelector( '#mainmenu' )
 			);
 
 			var navigation = menu.navigation();
@@ -286,8 +286,6 @@
 				evnt.preventDefault();
 				menu.handleClosings();
 			});
-			
-
 		</script>
 	</body>
 </html>

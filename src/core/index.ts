@@ -23,6 +23,9 @@ export default class MmenuLight {
     constructor(menu: HTMLElement) {
         //  Store the menu node.
         this.menu = menu;
+
+        // Init history back functionality
+        this.handleBackButton();
     }
 
     /**
@@ -71,6 +74,57 @@ export default class MmenuLight {
         }
 
         return this.drawer;
+    }
+
+    handleBackButton() {
+        var _menu = '#openmenu';
+        var states = [];
+
+        //create history breadcrumbs
+        const setStates = () => {
+            states = [_menu];
+            var openPanels = this.menu.querySelectorAll('.mm-spn--open');
+            openPanels.forEach((panel: any) => {
+                states.push(panel.dataset.panelId);
+            });
+        };
+
+        document.addEventListener('open:finish', () => {
+            setStates();
+            history.pushState(null, document.title, _menu);
+        });
+
+        document.addEventListener('openPanel:finish', () => {
+            setStates();
+        });
+
+        //back menu or close menu on history back
+        window.addEventListener('popstate', () => {
+            if (this.drawer.isMenuOpen) { //sprawdz czy menu jest otwarte
+                if (states.length) {
+                    states = states.slice(0, -1);
+                    var hash = states[states.length - 1];
+                    
+                    if (hash == _menu) {
+                        this.drawer.close(false);
+                    } else {
+                        this.navigator.openPanel(this.menu.querySelector(`[data-panel-id="${hash}"`));
+                        history.pushState(null, document.title, _menu);
+                    }
+                }
+            }
+        });
+
+        //set default history on menu close
+        document.addEventListener('close:finish', () => {
+            states = [];
+            history.back();
+            history.pushState(
+                null,
+                document.title,
+                location.pathname + location.search
+            );
+        });
     }
 
     handleClosings() {

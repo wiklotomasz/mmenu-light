@@ -273,6 +273,9 @@
     padding-bottom: 36px;
   }
 }
+.no-display {
+  display: none !important;
+}
 .mm-spn.mm-spn--navbar .mm-panel {
   top: 177px;
 }

@@ -10,6 +10,8 @@ var MmOffCanvasDrawer = /** @class */ (function () {
     function MmOffCanvasDrawer(node) {
         var _this = this;
         if (node === void 0) { node = null; }
+        //Set Is Menu open to false
+        this.isMenuOpen = false;
         //  Create the wrapper.
         this.wrapper = document.createElement('div');
         this.wrapper.classList.add("mm-ocd");
@@ -41,13 +43,20 @@ var MmOffCanvasDrawer = /** @class */ (function () {
     MmOffCanvasDrawer.prototype.open = function () {
         this.wrapper.classList.add("mm-ocd--open");
         document.documentElement.classList.add("mm-ocd-opened");
+        this.isMenuOpen = true;
+        document.dispatchEvent(new Event('open:finish'));
     };
     /**
      * Close the drawer.
      */
-    MmOffCanvasDrawer.prototype.close = function () {
+    MmOffCanvasDrawer.prototype.close = function (dispatchEvent) {
+        if (dispatchEvent === void 0) { dispatchEvent = true; }
         this.wrapper.classList.remove("mm-ocd--open");
         document.documentElement.classList.remove("mm-ocd-opened");
+        this.isMenuOpen = false;
+        if (dispatchEvent) {
+            document.dispatchEvent(new Event('close:finish'));
+        }
     };
     return MmOffCanvasDrawer;
 }());

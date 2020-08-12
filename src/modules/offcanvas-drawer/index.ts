@@ -11,12 +11,18 @@ export default class MmOffCanvasDrawer {
     /** HTML element for the blocker (off-canvas add-on). */
     backdrop: HTMLElement;
 
+    /** Is Menu open? */
+    isMenuOpen: boolean;
+
     /**
      * Class for off-canvas drawer.
      *
      * @param {HTMLElement} [node]          The element to put in the drawer.
      */
     constructor(node: HTMLElement = null) {
+        //Set Is Menu open to false
+        this.isMenuOpen = false;
+
         //  Create the wrapper.
         this.wrapper = document.createElement('div');
         this.wrapper.classList.add(`mm-ocd`);
@@ -54,13 +60,21 @@ export default class MmOffCanvasDrawer {
     open() {
         this.wrapper.classList.add(`mm-ocd--open`);
         document.documentElement.classList.add(`mm-ocd-opened`);
+        this.isMenuOpen = true;
+
+        document.dispatchEvent(new Event('open:finish'));
     }
 
     /**
      * Close the drawer.
      */
-    close() {
+    close(dispatchEvent = true) {
         this.wrapper.classList.remove(`mm-ocd--open`);
         document.documentElement.classList.remove(`mm-ocd-opened`);
+        this.isMenuOpen = false;
+
+        if (dispatchEvent) {
+            document.dispatchEvent(new Event('close:finish'));
+        }
     }
 }
