@@ -267,7 +267,6 @@
 			<div class="content">
 				<p><strong>This is a demo.</strong><br />
 					Click the hamburger icon to open the menu.</p>
-
 					<p>Open <a class="nav-opener" href="#aboutus">About us</a></p>
 					<p>Open <a class="nav-opener" href="#theteam">The team</a></p>
 					<p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br /><p>Some long text to make website longer</p><br />
@@ -275,6 +274,7 @@
 		</div>
 
 		<script src="../dist/mmenu-light.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/js-polyfills/0.1.42/polyfill.js"></script>
 		<script>
 			var menu = new MmenuLight(
 				document.querySelector( '#mainmenu' )
@@ -287,11 +287,11 @@
 			var NavOpeners = document.querySelectorAll( '.nav-opener' );
 
 			for (let i = 0; i < NavOpeners.length; i++) {
-				NavOpeners[i].addEventListener( 'click', evnt => {
+				NavOpeners[i].addEventListener( 'click', function(evnt){
 					evnt.preventDefault();
 					const navOpener = evnt.target.closest('.nav-opener');
-					var panelElement = document.querySelector(`[data-panel-id="${navOpener.hash}"`);
-					navigation.openPanel(panelElement);
+					// var panelElement = document.querySelector(`[data-panel-id="${navOpener.hash}"`);
+					// navigation.openPanel(panelElement);
 					drawer.open();
 				});
 			}
@@ -299,13 +299,13 @@
 			
 
 			var closeButton = document.querySelector( '.mm-btn_close' );
-			closeButton.addEventListener( 'click', evnt => {
+			closeButton.addEventListener( 'click', function(evnt){
 				evnt.preventDefault();
 				drawer.close();
 			});
 
 			var prevButton = document.querySelector( '.mm-btn_prev' );
-			prevButton.addEventListener( 'click', evnt => {
+			prevButton.addEventListener( 'click', function(evnt){
 				evnt.preventDefault();
 				menu.handleClosings();
 			});

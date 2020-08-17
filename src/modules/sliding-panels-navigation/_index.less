@@ -12,6 +12,7 @@
 .mm-spn {
     .mmspn-reset;
 
+
     width: 100%;
     height: 100%;
 
@@ -38,7 +39,6 @@
     margin-bottom: @mmspn_searchbox_margin-bottom;
     background: @theme-brand-color;
     color: @theme-white;
-
     &__wrapper {
         display: flex;
         justify-content: space-between;
@@ -148,14 +148,17 @@
 //  Listviews
 .mm-spn {
     //  All listviews.
+    position: relative;
     .mm-panel {
         .mmspn-reset;
 
         //  Enables smooth scrolling.
         -webkit-overflow-scrolling: touch;
 
-        position: fixed;
-        top: 0;
+        position: absolute;
+        // position: fixed;
+        top: 20%;
+        // top: 0;
         left: 100%;
         bottom: 0;
         z-index: 2; // Needs a z-index to be above its parent.

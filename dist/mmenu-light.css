@@ -229,6 +229,9 @@ html.mm-ocd-opened {
   font-weight: bold;
   color: #333333;
 }
+.mm-spn {
+  position: relative;
+}
 .mm-spn .mm-panel {
   display: block;
   padding: 0;
@@ -236,8 +239,8 @@ html.mm-ocd-opened {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
-  position: fixed;
-  top: 0;
+  position: absolute;
+  top: 20%;
   left: 100%;
   bottom: 0;
   z-index: 2;
