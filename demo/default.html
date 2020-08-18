@@ -276,39 +276,43 @@
 
 		<script src="../dist/mmenu-light.js"></script>
 		<script>
-			var menu = new MmenuLight(
-				document.querySelector( '#mainmenu' )
-			);
+			var mainMenuSelector = document.querySelector('#mainmenu');
+			var NavOpeners = document.querySelectorAll( '.nav-opener' );
+			var closeButton = document.querySelector( '.mm-btn_close' );
+			var prevButton = document.querySelector( '.mm-btn_prev' );
 
-			var navigation = menu.navigation();
-			var drawer = menu.offcanvas();
+			if (mainMenuSelector) {
+				var menu = new MmenuLight(mainMenuSelector);
+				var navigation = menu.navigation();
+				var drawer = menu.offcanvas();
+			}
 
 			//Open the menu on selected panel
-			var NavOpeners = document.querySelectorAll( '.nav-opener' );
+			if (NavOpeners) {
+				for (let i = 0; i < NavOpeners.length; i++) {
+					NavOpeners[i].addEventListener( 'click', evnt => {
+						evnt.preventDefault();
+						const navOpener = evnt.target.closest('.nav-opener');
+						var panelElement = document.querySelector(`[data-panel-id="${navOpener.hash}"`);
+						navigation.openPanel(panelElement);
+						drawer.open();
+					});
+				}
+			}
 
-			for (let i = 0; i < NavOpeners.length; i++) {
-				NavOpeners[i].addEventListener( 'click', evnt => {
+			if (closeButton) {
+				closeButton.addEventListener( 'click', evnt => {
 					evnt.preventDefault();
-					const navOpener = evnt.target.closest('.nav-opener');
-					var panelElement = document.querySelector(`[data-panel-id="${navOpener.hash}"`);
-					navigation.openPanel(panelElement);
-					drawer.open();
+					drawer.close();
 				});
 			}
 
-			
-
-			var closeButton = document.querySelector( '.mm-btn_close' );
-			closeButton.addEventListener( 'click', evnt => {
-				evnt.preventDefault();
-				drawer.close();
-			});
-
-			var prevButton = document.querySelector( '.mm-btn_prev' );
-			prevButton.addEventListener( 'click', evnt => {
-				evnt.preventDefault();
-				menu.handleClosings();
-			});
+			if (prevButton) {
+				prevButton.addEventListener( 'click', evnt => {
+					evnt.preventDefault();
+					menu.handleClosings();
+				});
+			}
 		</script>
 	</body>
 </html>
