@@ -366,5 +366,14 @@
     display: none !important;
 }
 
+//hide nav at the beginning and display it after nav is ready
+.mm-spn {
+    display: none;
+
+    .mm-ocd__content & {
+        display: block;
+    }
+}
+
 @import '_navbar';
 @import '_vertical';
