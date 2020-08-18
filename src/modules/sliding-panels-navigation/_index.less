@@ -214,7 +214,7 @@
 //  Anchors
 .mm-panel {
     a,
-    span {
+    .span {
         .mmspn-reset;
 
         position: relative;
@@ -233,7 +233,7 @@
 // Anchors arrows and hover effect
 .mm-listitem {
     // Add arrow to parent
-    & > span:before {
+    & > .span:before {
         content: '';
         background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%0A%20%20%3Cpath%20id%3D%22arrowrighticon-a%22%20d%3D%22M6%2C19.4939759%20L16.1428571%2C11.9759036%20L6%2C4.45783133%20L6%2C2%20L17.5714286%2C10.5301205%20C18.047619%2C10.8674699%2018.3333333%2C11.3975904%2018.3333333%2C11.9759036%20C18.3333333%2C12.5542169%2018.047619%2C13.0843373%2017.5714286%2C13.4216867%20L6%2C22%20L6%2C19.4939759%20Z%22/%3E%0A%3C/svg%3E%0A');
         background-repeat: no-repeat;
@@ -255,14 +255,14 @@
     @media (min-width: (@breakpoint-l)) {
         & > a:hover,
         & > a:focus,
-        & > span:hover,
-        & > span:focus {
+        & > .span:hover,
+        & > .span:focus {
             background: @theme-lightest-gray;
             color: @theme-brand-color;
         }
 
-        & > span:focus:before,
-        & > span:hover:before {
+        & > .span:focus:before,
+        & > .span:hover:before {
             filter: invert(8%) sepia(96%) saturate(5917%) hue-rotate(327deg) brightness(75%) contrast(111%);
         }
     }
@@ -323,6 +323,25 @@
     &__button,
     button {
         width: 100%;
+    }
+
+    &__button {
+        button {
+            min-width: 13em;
+            max-width: 100%;
+            color: #8E0038;
+            background: transparent;
+            border: 1px solid;
+            border-color: #8E0038;
+            padding: 0 16px;
+            border-radius: 100px;
+            border-width: 2px;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 0.25px;
+            line-height: 20px;
+            cursor: pointer;
+        }
     }
 }
 

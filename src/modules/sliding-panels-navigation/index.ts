@@ -61,82 +61,18 @@ export default class MmSlidingPanelsNavigation {
      * @param {HTMLElement} panel Panel to open.
      */
     openPanel(panel: HTMLElement) {
-        /** Parent LI for the panel.  */
-        let listitem = panel.parentElement;
+        //  Unset all panels from being opened and parent.
+        $(`.mm-spn--open`, this.node).forEach(open => {
+            open.classList.remove(`mm-spn--open`);
+            open.classList.remove(`mm-spn--parent`);
+        });
 
-        //  Sliding submenus
-        if (this.slidingSubmenus) {
-            /** Title above the panel to open. */
-            let title = panel.dataset.mmSpnTitle;
-
-            //  Opening the main level UL.
-            if (listitem === this.node) {
-                this.node.classList.add(`mm-spn--main`);
-            }
-
-            //  Opening a sub level UL.
-            else {
-                this.node.classList.remove(`mm-spn--main`);
-
-                //  Find title from parent LI.
-                if (!title) {
-                    r(listitem.children).forEach(child => {
-                        if (child.matches('a, span')) {
-                            title = child.textContent;
-                        }
-                    });
-                }
-            }
-
-            //  Use the default title.
-            if (!title) {
-                title = this.title;
-            }
-
-            //  Set the title.
-            this.mmSpnTitle.innerHTML = title;
-
-            //  Unset all panels from being opened and parent.
-            $(`.mm-spn--open`, this.node).forEach(open => {
-                open.classList.remove(`mm-spn--open`);
-                open.classList.remove(`mm-spn--parent`);
-            });
-
-            //  Set the current panel as being opened.
-            panel.classList.add(`mm-spn--open`);
-            panel.classList.remove(`mm-spn--parent`);
-
-            //  Set all parent panels as being parent.
-            let parent = panel.parentElement.closest('.mm-panel');
-            while (parent) {
-                parent.classList.add(`mm-spn--open`);
-                parent.classList.add(`mm-spn--parent`);
-                parent = parent.parentElement.closest('.mm-panel');
-            }
-            
-            document.dispatchEvent(new Event('openPanel:finish'));
-        }
-
-        //  Vertical submenus
-        else {
-            /** Whether or not the panel is currently opened. */
-            const isOpened = panel.matches(`.mm-spn--open`);
-
-            //  Unset all panels from being opened and parent.
-            $(`.mm-spn--open`, this.node).forEach(open => {
-                open.classList.remove(`mm-spn--open`);
-            });
-
-            //  Toggle the current panel.
-            panel.classList[isOpened ? 'remove' : 'add'](`mm-spn--open`);
-
-            //  Set all parent panels as being opened.
-            let parent = panel.parentElement.closest('.mm-panel');
-            while (parent) {
-                parent.classList.add(`mm-spn--open`);
-                parent = parent.parentElement.closest('.mm-panel');
-            }
-        }
+        //  Set the current panel as being opened.
+        panel.classList.add(`mm-spn--open`);
+        panel.classList.remove(`mm-spn--parent`);
+        
+        document.dispatchEvent(new Event('openPanel:finish'));
+        
     }
 
     /**
@@ -188,7 +124,7 @@ export default class MmSlidingPanelsNavigation {
             let listitem;
 
             //  Find the parent listitem.
-            if (target.closest('span')) {
+            if (target.closest('.span')) {
                 listitem = target.parentElement;
             } else if (target.closest('.mm-listitem')) {
                 listitem = target;
