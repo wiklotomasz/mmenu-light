@@ -1,5 +1,4 @@
 import { r, $ } from '../helpers';
-import * as support from '../support';
 /**
  * Class for navigating in a mobile menu.
  */
@@ -18,10 +17,6 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
         this.title = title;
         this.slidingSubmenus = slidingSubmenus;
         this.selectedClass = selectedClass;
-        //  Sliding submenus not supported in IE11.
-        if (support.IE11) {
-            this.slidingSubmenus = false;
-        }
         this.node.classList.add("mm-spn--" + (this.slidingSubmenus ? 'navbar' : 'vertical'));
         this.mmSpnTitle = this.node.querySelector("#mm-header__title");
         this._setSelectedl();
