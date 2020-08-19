@@ -323,7 +323,7 @@
 			//Open the menu on selected panel
 			if (NavOpeners) {
 				for (let i = 0; i < NavOpeners.length; i++) {
-					NavOpeners[i].addEventListener( 'click', evnt => {
+					NavOpeners[i].addEventListener( 'click', function(evnt) {
 						evnt.preventDefault();
 						const navOpener = evnt.target.closest('.nav-opener');
 						var panelElement = document.querySelector('[data-panel-id="' + navOpener.hash + '"');
@@ -334,14 +334,14 @@
 			}
 
 			if (closeButton) {
-				closeButton.addEventListener( 'click', evnt => {
+				closeButton.addEventListener( 'click', function(evnt) {
 					evnt.preventDefault();
 					drawer.close();
 				});
 			}
 
 			if (prevButton) {
-				prevButton.addEventListener( 'click', evnt => {
+				prevButton.addEventListener( 'click', function(evnt) {
 					evnt.preventDefault();
 					menu.handleClosings();
 				});
