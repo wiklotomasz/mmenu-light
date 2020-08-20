@@ -1,4 +1,5 @@
-import { r, $ } from '../helpers';
+import { r, $, uniqueId } from '../helpers';
+import * as DOM from '../dom';
 /**
  * Class for navigating in a mobile menu.
  */
@@ -21,15 +22,33 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
         this.mmSpnTitle = this.node.querySelector("#mm-header__title");
         this._setSelectedl();
         this._initAnchors();
+        this._initPanels();
     }
+    MmSlidingPanelsNavigation.prototype._initPanels = function () {
+        var panelsDiv = DOM.create('div.mm-panels');
+        var panels = this.node.querySelectorAll('.mm-panel');
+        for (var i = 0; i < panels.length; i++) {
+            var singlePanel = panels[i];
+            var id = singlePanel.id || uniqueId();
+            var link = singlePanel.previousElementSibling;
+            if (link) {
+                link.href = '#' + id;
+            }
+            singlePanel.id = id;
+            panelsDiv.append(singlePanel);
+        }
+        this.node.append(panelsDiv);
+    };
     /**
      * Open the given panel.
      *
      * @param {HTMLElement} panel Panel to open.
      */
     MmSlidingPanelsNavigation.prototype.openPanel = function (panel) {
+        console.log('otwieram panel', panel);
         /** Parent LI for the panel.  */
         var listitem = panel.parentElement;
+        console.log(listitem, 'listitem;)');
         //  Sliding submenus
         if (this.slidingSubmenus) {
             /** Title above the panel to open. */
@@ -73,23 +92,23 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
             }
             document.dispatchEvent(new Event('openPanel:finish'));
         }
-        //  Vertical submenus
-        else {
-            /** Whether or not the panel is currently opened. */
-            var isOpened = panel.matches(".mm-spn--open");
-            //  Unset all panels from being opened and parent.
-            $(".mm-spn--open", this.node).forEach(function (open) {
-                open.classList.remove("mm-spn--open");
-            });
-            //  Toggle the current panel.
-            panel.classList[isOpened ? 'remove' : 'add']("mm-spn--open");
-            //  Set all parent panels as being opened.
-            var parent_2 = panel.parentElement.closest('.mm-panel');
-            while (parent_2) {
-                parent_2.classList.add("mm-spn--open");
-                parent_2 = parent_2.parentElement.closest('.mm-panel');
-            }
-        }
+        // Vertical submenus
+        // else {
+        //     /** Whether or not the panel is currently opened. */
+        //     const isOpened = panel.matches(`.mm-spn--open`);
+        //     //  Unset all panels from being opened and parent.
+        //     $(`.mm-spn--open`, this.node).forEach(open => {
+        //         open.classList.remove(`mm-spn--open`);
+        //     });
+        //     //  Toggle the current panel.
+        //     panel.classList[isOpened ? 'remove' : 'add'](`mm-spn--open`);
+        //     //  Set all parent panels as being opened.
+        //     let parent = panel.parentElement.closest('.mm-panel');
+        //     while (parent) {
+        //         parent.classList.add(`mm-spn--open`);
+        //         parent = parent.parentElement.closest('.mm-panel');
+        //     }
+        // }
     };
     /**
      * Initiate the selected listitem / open the current panel.

@@ -13,7 +13,7 @@
 	<body>
 		<div id="page">
 			<div class="header">
-				<a class="nav-opener" href="#mainmenu"><span></span></a>
+				<a class="nav-opener" href="#mm-0"><span></span></a>
 				Demo
 				<nav id="mainmenu" class="mm-spn">
 					<div class="mm-header">
@@ -32,7 +32,7 @@
 						</div>
 					</div>
 					<div class="mm-searchbox">
-						<a class="nav-opener" href="#search">
+						<a class="nav-opener" href="#mm-search">
 							<div class="mm-searchbox__field">
 								<input class="mm-searchbox__input" type="text" placeholder="Suchbegriff eingeben…" />
 								<svg width="20" height="20" class="ee_svg-icon ee_icon ee_icon-searchicon svg-icon svg-icon--left" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img" aria-labelledby=""><g><path id="searchicon-a" d="M9.17948718,2 C5.23076923,2 2,5.23076923 2,9.17948718 C2,13.1282051 5.23076923,16.3589744 9.17948718,16.3589744 C13.1282051,16.3589744 16.3589744,13.1282051 16.3589744,9.17948718 C16.3589744,5.23076923 13.1282051,2 9.17948718,2 Z M9.17948718,14.3076923 C6.35897436,14.3076923 4.05128205,12 4.05128205,9.17948718 C4.05128205,6.35897436 6.35897436,4.05128205 9.17948718,4.05128205 C12,4.05128205 14.3076923,6.35897436 14.3076923,9.17948718 C14.3076923,12 12,14.3076923 9.17948718,14.3076923 Z M20.4615385,22 L15.0769231,16.6153846 L16.6153846,15.0769231 L22,20.4615385 L20.4615385,22 Z M5.58974359,9.79487179 C5.48717949,8.76923077 5.79487179,7.69230769 6.41025641,6.87179487 C7.23076923,5.79487179 8.56410256,5.23076923 9.8974359,5.33333333 L9.74358974,7.38461538 C9.07692308,7.33333333 8.41025641,7.64102564 8,8.15384615 C7.69230769,8.56410256 7.53846154,9.07692308 7.58974359,9.58974359 L5.58974359,9.79487179 Z"></path></g></svg>
@@ -55,15 +55,15 @@
 							</div>
 						</a>
 					</div>
-					<div class="mm-panel" data-panel-id="#mainmenu">
+					<div class="mm-panel">
 						<ul class="mm-listview">
 							<li class="mm-listitem"><a href="#">Home</a></li>
-							<li class="mm-listitem"><span class="span mm-listitem__header">Producte</span>
-								<div class="mm-panel" data-panel-id="#aboutus">
+							<li class="mm-listitem"><a class="span mm-listitem__header nav-opener">Producte</a>
+								<div class="mm-panel" id="mm-aboutus">
 									<ul class="mm-listview">
 										<li class="mm-listitem"><a href="#about/history">History</a></li>
-										<li class="mm-listitem"><span class="span mm-listitem__header">The team</span>
-											<div class="mm-panel" data-panel-id="#theteam">
+										<li class="mm-listitem"><a class="span mm-listitem__header nav-opener">The team</a>
+											<div class="mm-panel" id="mm-theteam">
 												<ul class="mm-listview">
 													<li class="mm-listitem"><a href="#about/team/management">Management</a></li>
 													<li class="mm-listitem"><a href="#about/team/sales">Sales</a></li>
@@ -75,13 +75,13 @@
 									</ul>
 								</div>
 							</li>
-							<li class="mm-listitem"><span class="span mm-listitem__header">Services</span>
-								<div class="mm-panel" data-panel-id="#aboutus">
+							<li class="mm-listitem"><a class="span mm-listitem__header nav-opener">Services</a>
+								<div class="mm-panel">
 									<ul class="mm-listview">
 										<li class="mm-listitem"><a href="#">Ratgeber & Rechtsportal</a></li>
 										<li class="mm-listitem"><a href="#">Freundschaftswerbung</a></li>
-										<li class="mm-listitem"><span class="span mm-listitem__header">Services für ERGO Kunden</span>
-											<div class="mm-panel" data-panel-id="#theteam">
+										<li class="mm-listitem"><a class="span mm-listitem__header nav-opener">Services für ERGO Kunden</a>
+											<div class="mm-panel">
 												<ul class="mm-listview">
 													<li class="mm-listitem"><a href="#about/team/management">Management</a></li>
 													<li class="mm-listitem"><a href="#about/team/sales">Sales</a></li>
@@ -148,8 +148,8 @@
 									</div>
 								</div>
 							</li>
-							<li class="mm-listitem"><span class="span mm-listitem__header no-display">Suche</span>
-								<div class="mm-panel" data-panel-id="#search">
+							<li class="mm-listitem"><a class="span mm-listitem__header no-display">Suche</a>
+								<div class="mm-panel" id="mm-search">
 									<div class="results__header">
 										<p>Beliebte Suchbegriffe</p>
 									</div>
@@ -302,29 +302,68 @@
 			//Open the menu on selected panel
 			if (NavOpeners) {
 				for (let i = 0; i < NavOpeners.length; i++) {
-					NavOpeners[i].addEventListener( 'click', evnt => {
+					NavOpeners[i].addEventListener( 'click', function(evnt) {
 						evnt.preventDefault();
 						const navOpener = evnt.target.closest('.nav-opener');
-						var panelElement = document.querySelector(`[data-panel-id="${navOpener.hash}"`);
-						navigation.openPanel(panelElement);
-						drawer.open();
+						const href = navOpener.hash;
+
+						if (href && href.length > 1 && href.slice(0, 1) == '#') {
+							try {
+								let panel = mainMenuSelector.querySelector(href);
+								if (panel && panel.matches('.mm-panel')) {
+									navigation.openPanel(panel);
+									drawer.open();
+									return true;
+								}
+							} catch (err) {
+								console.error('Didnt find corresponding panel in main navigation');
+							}
+						}		
 					});
 				}
 			}
 
 			if (closeButton) {
-				closeButton.addEventListener( 'click', evnt => {
+				closeButton.addEventListener( 'click', function(evnt) {
 					evnt.preventDefault();
 					drawer.close();
 				});
 			}
 
 			if (prevButton) {
-				prevButton.addEventListener( 'click', evnt => {
+				prevButton.addEventListener( 'click', function(evnt) {
 					evnt.preventDefault();
 					menu.handleClosings();
 				});
 			}
 		</script>
+
+		<style>
+			body .mm-ocd__content {
+				position: fixed !important;
+				top: 0;
+				overflow: auto;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				width: 432px !important;
+				z-index: 700;
+				transition: none !important;
+			}
+
+			#mainmenu {
+				min-height: 100%;
+				height: -webkit-fit-content;
+				height: -moz-fit-content;
+				height: fit-content;
+			}
+
+			.mm-spn .mm-panel {
+				width: 100% !important;
+				padding-right: 0 !important;
+				position: absolute !important;
+			}
+				
+		</style>
 	</body>
 </html>

@@ -17,3 +17,10 @@ export var r = function (list) {
 export var $ = function (selector, context) {
     return r((context || document).querySelectorAll(selector));
 };
+/**
+ * Get a (page wide) unique ID.
+ */
+export function uniqueId() {
+    return 'mm-' + __id++;
+}
+var __id = 0;

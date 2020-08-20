@@ -1,4 +1,5 @@
-import { r, $ } from '../helpers';
+import { r, $, uniqueId } from '../helpers';
+import * as DOM from '../dom';
 import * as support from '../support';
 
 /**
@@ -48,6 +49,25 @@ export default class MmSlidingPanelsNavigation {
 
         this._setSelectedl();
         this._initAnchors();
+        this._initPanels();
+    }
+
+    _initPanels() {
+        let panelsDiv = DOM.create('div.mm-panels');
+        let panels = this.node.querySelectorAll('.mm-panel');
+
+        for (let i = 0; i < panels.length; i++) {
+            const singlePanel = (panels[i] as HTMLElement);
+            const id = singlePanel.id || uniqueId();
+            let link = (singlePanel.previousElementSibling as HTMLAnchorElement);
+            if (link) {
+                link.href = '#' + id;
+            }
+            singlePanel.id = id;
+            panelsDiv.append(singlePanel);
+        }
+
+        this.node.append(panelsDiv);
     }
 
     /**
@@ -112,26 +132,26 @@ export default class MmSlidingPanelsNavigation {
             document.dispatchEvent(new Event('openPanel:finish'));
         }
 
-        //  Vertical submenus
-        else {
-            /** Whether or not the panel is currently opened. */
-            const isOpened = panel.matches(`.mm-spn--open`);
+        // Vertical submenus
+        // else {
+        //     /** Whether or not the panel is currently opened. */
+        //     const isOpened = panel.matches(`.mm-spn--open`);
 
-            //  Unset all panels from being opened and parent.
-            $(`.mm-spn--open`, this.node).forEach(open => {
-                open.classList.remove(`mm-spn--open`);
-            });
+        //     //  Unset all panels from being opened and parent.
+        //     $(`.mm-spn--open`, this.node).forEach(open => {
+        //         open.classList.remove(`mm-spn--open`);
+        //     });
 
-            //  Toggle the current panel.
-            panel.classList[isOpened ? 'remove' : 'add'](`mm-spn--open`);
+        //     //  Toggle the current panel.
+        //     panel.classList[isOpened ? 'remove' : 'add'](`mm-spn--open`);
 
-            //  Set all parent panels as being opened.
-            let parent = panel.parentElement.closest('.mm-panel');
-            while (parent) {
-                parent.classList.add(`mm-spn--open`);
-                parent = parent.parentElement.closest('.mm-panel');
-            }
-        }
+        //     //  Set all parent panels as being opened.
+        //     let parent = panel.parentElement.closest('.mm-panel');
+        //     while (parent) {
+        //         parent.classList.add(`mm-spn--open`);
+        //         parent = parent.parentElement.closest('.mm-panel');
+        //     }
+        // }
     }
 
     /**

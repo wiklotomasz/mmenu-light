@@ -18,3 +18,11 @@ export const r = (list: NodeList | HTMLCollection) => {
 export const $ = (selector: string, context?: HTMLElement) => {
     return r((context || document).querySelectorAll(selector));
 };
+
+/**
+ * Get a (page wide) unique ID.
+ */
+export function uniqueId() {
+    return 'mm-' + __id++;
+}
+var __id = 0;
