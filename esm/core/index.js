@@ -65,7 +65,22 @@ var MmenuLight = /** @class */ (function () {
         }
         return this.drawer;
     };
-    MmenuLight.prototype.initPanels = function () {
+    MmenuLight.prototype.handleOpen = function (evnt) {
+        var navOpener = evnt.target.closest('.nav-opener');
+        var href = navOpener.hash;
+        if (href && href.length > 1 && href.slice(0, 1) == '#') {
+            try {
+                var panel = this.menu.querySelector(href);
+                if (panel && panel.matches('.mm-panel')) {
+                    this.navigator.openPanel(panel);
+                    this.drawer.open();
+                    return true;
+                }
+            }
+            catch (err) {
+                console.error('Didnt find corresponding panel in main navigation');
+            }
+        }
     };
     MmenuLight.prototype.handleBackButton = function () {
         var _this = this;

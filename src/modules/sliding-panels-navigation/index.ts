@@ -85,7 +85,7 @@ export default class MmSlidingPanelsNavigation {
             let title = panel.dataset.mmSpnTitle;
 
             //  Opening the main level UL.
-            if (listitem === this.node) {
+            if (panel.id === 'mm-0') {
                 this.node.classList.add(`mm-spn--main`);
             }
 

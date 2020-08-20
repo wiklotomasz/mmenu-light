@@ -29,6 +29,8 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
         var panels = this.node.querySelectorAll('.mm-panel');
         for (var i = 0; i < panels.length; i++) {
             var singlePanel = panels[i];
+            var isParent = singlePanel.querySelectorAll('.mm-panel');
+            console.log('isParent', isParent);
             var id = singlePanel.id || uniqueId();
             var link = singlePanel.previousElementSibling;
             if (link) {
@@ -45,16 +47,14 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
      * @param {HTMLElement} panel Panel to open.
      */
     MmSlidingPanelsNavigation.prototype.openPanel = function (panel) {
-        console.log('otwieram panel', panel);
         /** Parent LI for the panel.  */
         var listitem = panel.parentElement;
-        console.log(listitem, 'listitem;)');
         //  Sliding submenus
         if (this.slidingSubmenus) {
             /** Title above the panel to open. */
             var title_1 = panel.dataset.mmSpnTitle;
             //  Opening the main level UL.
-            if (listitem === this.node) {
+            if (panel.id === 'mm-0') {
                 this.node.classList.add("mm-spn--main");
             }
             //  Opening a sub level UL.
