@@ -70,31 +70,6 @@ export default class MmenuLight {
             let orgLocation = document.createComment('original menu location');
             this.menu.after(orgLocation);
 
-            //	Wrap the panels in a node.
-            // let panels = DOM.create('div.mm-panels');
-
-            // DOM.children(this.menu).forEach((panel) => {
-            //     panels.append(panel);
-            // });
-
-            // this.menu.append(panels);
-
-            // var panel = this.menu.querySelectorAll('.mm-panel');
-
-            // for (let i = 0; i < panel.length; i++) {
-            //     const singlePanel = panel[i];
-            //     let link = panel[i].parentElement;
-            //     let title = link.querySelector('.nav-opener');
-            //     if (title) {
-            //         title.setAttribute('href', '#mm-'+i);
-            //     }
-            //     singlePanel.setAttribute('data-panel-id','#mm-'+i);
-            //     panels.append(panel[i]);
-            // }
-    
-            //this.menu.append(panels);
-
-            //  Enable
             this.drawer.content.append(this.menu);
         }
 

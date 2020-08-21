@@ -29,8 +29,6 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
         var panels = this.node.querySelectorAll('.mm-panel');
         for (var i = 0; i < panels.length; i++) {
             var singlePanel = panels[i];
-            var isParent = singlePanel.querySelectorAll('.mm-panel');
-            console.log('isParent', isParent);
             var id = singlePanel.id || uniqueId();
             var link = singlePanel.previousElementSibling;
             if (link) {
