@@ -37,19 +37,20 @@ html.mm-ocd-opened {
 
 //  The content
 .mm-ocd__content {
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
-    z-index: 2;
+    left: 0;
+    right: 0;
+    z-index: 700;
+
+    overflow: auto;
 
     width: @mmocd_width;
     min-width: @mmocd_min_width;
     max-width: @mmocd_max_width;
 
     background: #fff;
-    transition-property: transform;
-    transition-duration: @mmocd_transition_duration;
-    transition-timing-function: ease;
 
     .mm-ocd--left & {
         left: 0;

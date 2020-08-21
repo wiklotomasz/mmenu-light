@@ -13,7 +13,8 @@
     .mmspn-reset;
 
     width: 100%;
-    height: 100%;
+    height: fit-content;
+    min-height: 100%;
 
     //  Prevent the entire menu from highlighting when clicking the navbar
     -webkit-tap-highlight-color: transparent;
@@ -154,7 +155,7 @@
         //  Enables smooth scrolling.
         -webkit-overflow-scrolling: touch;
 
-        position: fixed;
+        position: absolute;
         top: 0;
         left: 100%;
         bottom: 0;
@@ -162,8 +163,8 @@
 
         //  Fix for weird iOS Safari issue:
         //  A fixed element is not visible outside of its parent if its parent is scrollable.
-        width: 100% + @mmspn_panel_offset;
-        padding-right: @mmspn_panel_offset;
+        width: 100%;
+        padding-right: 0;
         //  /Fix
 
         line-height: @mmspn_line_height;
