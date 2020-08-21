@@ -47,7 +47,6 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
      * @param {HTMLElement} panel Panel to open.
      */
     MmSlidingPanelsNavigation.prototype.openPanel = function (panel) {
-        panel.classList.remove("mm-hidden");
         /** Title above the panel to open. */
         var title = panel.dataset.mmSpnTitle;
         //  Use the default title.
@@ -62,6 +61,7 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
             open.classList.remove("mm-spn--open");
         });
         //  Set the current panel as being opened.
+        panel.classList.remove("mm-hidden");
         panel.classList.add("mm-spn--open");
         document.dispatchEvent(new Event('openPanel:finish'));
     };

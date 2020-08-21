@@ -78,7 +78,6 @@ export default class MmSlidingPanelsNavigation {
      * @param {HTMLElement} panel Panel to open.
      */
     openPanel(panel: HTMLElement) {
-        panel.classList.remove(`mm-hidden`);
         /** Title above the panel to open. */
         let title = panel.dataset.mmSpnTitle;
 
@@ -97,6 +96,7 @@ export default class MmSlidingPanelsNavigation {
         });
 
         //  Set the current panel as being opened.
+        panel.classList.remove(`mm-hidden`);
         panel.classList.add(`mm-spn--open`);
         
         document.dispatchEvent(new Event('openPanel:finish'));
