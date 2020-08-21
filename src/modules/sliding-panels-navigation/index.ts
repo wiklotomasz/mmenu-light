@@ -1,6 +1,5 @@
-import { r, $, uniqueId } from '../helpers';
+import { $, uniqueId } from '../helpers';
 import * as DOM from '../dom';
-import * as support from '../support';
 
 /**
  * Class for navigating in a mobile menu.
