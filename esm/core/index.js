@@ -80,65 +80,45 @@ var MmenuLight = /** @class */ (function () {
         if (hash !== this._menuId) {
             this.state.push(hash);
         }
-        console.log(this.state);
     };
     MmenuLight.prototype.removeState = function () {
-        console.log('usuwam 1 state');
         if (this.state.length) {
             this.state.pop();
         }
-        console.log(this.state);
     };
     MmenuLight.prototype.initEmptyState = function () {
         this.state = [this._menuId];
     };
     MmenuLight.prototype.handleBackButton = function () {
         var _this = this;
-        var _menu = '#openmenu';
-        var states = [];
-        //create history breadcrumbs
-        var setStates = function () {
-            states = [_menu];
-            var openPanels = _this.menu.querySelectorAll('.mm-spn--open');
-            openPanels.forEach(function (panel) {
-                states.push(panel.dataset.panelId);
-            });
-        };
+        var mmenu = '#menu-open';
         document.addEventListener('open:finish', function () {
-            setStates();
-            history.pushState(null, document.title, _menu);
-        });
-        document.addEventListener('openPanel:finish', function () {
-            setStates();
+            console.log('uruchamiam open:finish');
+            history.pushState(null, document.title, mmenu);
         });
         //back menu or close menu on history back
         window.addEventListener('popstate', function () {
             if (_this.drawer.isMenuOpen) { //sprawdz czy menu jest otwarte
-                if (states.length) {
-                    states = states.slice(0, -1);
-                    var hash = states[states.length - 1];
-                    if (hash == _menu) {
-                        _this.drawer.close(false);
-                    }
-                    else {
-                        _this.navigator.openPanel(_this.menu.querySelector("[data-panel-id=\"" + hash + "\""));
-                        history.pushState(null, document.title, _menu);
-                    }
+                if (_this.state.length) {
+                    history.pushState(null, document.title, mmenu);
+                    _this.handleClosings();
                 }
             }
         });
         //set default history on menu close
         document.addEventListener('close:finish', function () {
-            states = [];
             history.back();
-            history.pushState(null, document.title, location.pathname + location.search);
+            // history.pushState(
+            //     null,
+            //     document.title,
+            //     location.pathname + location.search
+            // );
         });
     };
     MmenuLight.prototype.handleClosings = function () {
-        console.log('handle closing');
+        console.log('uruchamiam handleClosings');
         this.removeState();
         var parent = this.state[this.state.length - 1];
-        console.log('bede otwierał', parent);
         if (parent) {
             this.openPanelByHash(parent);
             return true;

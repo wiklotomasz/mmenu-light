@@ -76,18 +76,9 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
             //  Unset all panels from being opened and parent.
             $(".mm-spn--open", this.node).forEach(function (open) {
                 open.classList.remove("mm-spn--open");
-                open.classList.remove("mm-spn--parent");
             });
             //  Set the current panel as being opened.
             panel.classList.add("mm-spn--open");
-            panel.classList.remove("mm-spn--parent");
-            //  Set all parent panels as being parent.
-            var parent_1 = panel.parentElement.closest('.mm-panel');
-            while (parent_1) {
-                parent_1.classList.add("mm-spn--open");
-                parent_1.classList.add("mm-spn--parent");
-                parent_1 = parent_1.parentElement.closest('.mm-panel');
-            }
             document.dispatchEvent(new Event('openPanel:finish'));
         }
         // Vertical submenus

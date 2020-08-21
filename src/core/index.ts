@@ -1,5 +1,3 @@
-import { $ } from '../modules/helpers';
-import * as DOM from '../modules/dom';
 import MmSlidingPanelsNavigation from '../modules/sliding-panels-navigation/index';
 import MmOffCanvasDrawer from '../modules/offcanvas-drawer/index';
 
@@ -134,53 +132,25 @@ export default class MmenuLight {
     }
 
     handleBackButton() {
-        var _menu = '#openmenu';
-        var states = [];
-
-        //create history breadcrumbs
-        const setStates = () => {
-            states = [_menu];
-            var openPanels = this.menu.querySelectorAll('.mm-spn--open');
-            openPanels.forEach((panel: any) => {
-                states.push(panel.dataset.panelId);
-            });
-        };
+        var mmenu = '#menu-open'
 
         document.addEventListener('open:finish', () => {
-            setStates();
-            history.pushState(null, document.title, _menu);
-        });
-
-        document.addEventListener('openPanel:finish', () => {
-            setStates();
+            history.pushState(null, document.title, mmenu);
         });
 
         //back menu or close menu on history back
         window.addEventListener('popstate', () => {
             if (this.drawer.isMenuOpen) { //sprawdz czy menu jest otwarte
-                if (states.length) {
-                    states = states.slice(0, -1);
-                    var hash = states[states.length - 1];
-                    
-                    if (hash == _menu) {
-                        this.drawer.close(false);
-                    } else {
-                        this.navigator.openPanel(this.menu.querySelector(`[data-panel-id="${hash}"`));
-                        history.pushState(null, document.title, _menu);
-                    }
+                if (this.state.length) {
+                    history.pushState(null, document.title, mmenu);
+                    this.handleClosings();
                 }
             }
         });
 
         //set default history on menu close
         document.addEventListener('close:finish', () => {
-            states = [];
             history.back();
-            history.pushState(
-                null,
-                document.title,
-                location.pathname + location.search
-            );
         });
     }
 

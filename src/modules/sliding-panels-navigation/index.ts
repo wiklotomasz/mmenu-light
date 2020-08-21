@@ -79,79 +79,45 @@ export default class MmSlidingPanelsNavigation {
         /** Parent LI for the panel.  */
         let listitem = panel.parentElement;
 
-        //  Sliding submenus
-        if (this.slidingSubmenus) {
-            /** Title above the panel to open. */
-            let title = panel.dataset.mmSpnTitle;
+        /** Title above the panel to open. */
+        let title = panel.dataset.mmSpnTitle;
 
-            //  Opening the main level UL.
-            if (panel.id === 'mm-0') {
-                this.node.classList.add(`mm-spn--main`);
-            }
-
-            //  Opening a sub level UL.
-            else {
-                this.node.classList.remove(`mm-spn--main`);
-
-                //  Find title from parent LI.
-                if (!title) {
-                    r(listitem.children).forEach(child => {
-                        if (child.matches('a, .span')) {
-                            title = child.textContent;
-                        }
-                    });
-                }
-            }
-
-            //  Use the default title.
-            if (!title) {
-                title = this.title;
-            }
-
-            //  Set the title.
-            this.mmSpnTitle.innerHTML = title;
-
-            //  Unset all panels from being opened and parent.
-            $(`.mm-spn--open`, this.node).forEach(open => {
-                open.classList.remove(`mm-spn--open`);
-                open.classList.remove(`mm-spn--parent`);
-            });
-
-            //  Set the current panel as being opened.
-            panel.classList.add(`mm-spn--open`);
-            panel.classList.remove(`mm-spn--parent`);
-
-            //  Set all parent panels as being parent.
-            let parent = panel.parentElement.closest('.mm-panel');
-            while (parent) {
-                parent.classList.add(`mm-spn--open`);
-                parent.classList.add(`mm-spn--parent`);
-                parent = parent.parentElement.closest('.mm-panel');
-            }
-            
-            document.dispatchEvent(new Event('openPanel:finish'));
+        //  Opening the main level UL.
+        if (panel.id === 'mm-0') {
+            this.node.classList.add(`mm-spn--main`);
         }
 
-        // Vertical submenus
-        // else {
-        //     /** Whether or not the panel is currently opened. */
-        //     const isOpened = panel.matches(`.mm-spn--open`);
+        //  Opening a sub level UL.
+        else {
+            this.node.classList.remove(`mm-spn--main`);
 
-        //     //  Unset all panels from being opened and parent.
-        //     $(`.mm-spn--open`, this.node).forEach(open => {
-        //         open.classList.remove(`mm-spn--open`);
-        //     });
+            //  Find title from parent LI.
+            if (!title) {
+                r(listitem.children).forEach(child => {
+                    if (child.matches('a, .span')) {
+                        title = child.textContent;
+                    }
+                });
+            }
+        }
 
-        //     //  Toggle the current panel.
-        //     panel.classList[isOpened ? 'remove' : 'add'](`mm-spn--open`);
+        //  Use the default title.
+        if (!title) {
+            title = this.title;
+        }
 
-        //     //  Set all parent panels as being opened.
-        //     let parent = panel.parentElement.closest('.mm-panel');
-        //     while (parent) {
-        //         parent.classList.add(`mm-spn--open`);
-        //         parent = parent.parentElement.closest('.mm-panel');
-        //     }
-        // }
+        //  Set the title.
+        this.mmSpnTitle.innerHTML = title;
+
+        //  Unset all panels from being opened and parent.
+        $(`.mm-spn--open`, this.node).forEach(open => {
+            open.classList.remove(`mm-spn--open`);
+        });
+
+        //  Set the current panel as being opened.
+        panel.classList.add(`mm-spn--open`);
+        
+        document.dispatchEvent(new Event('openPanel:finish'));
     }
 
     /**
