@@ -1,4 +1,4 @@
-import { r, $, uniqueId } from '../helpers';
+import { $, uniqueId } from '../helpers';
 import * as DOM from '../dom';
 /**
  * Class for navigating in a mobile menu.
@@ -35,6 +35,7 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
                 link.href = '#' + id;
             }
             singlePanel.id = id;
+            singlePanel.classList.add("mm-hidden");
             singlePanel.dataset.mmSpnTitle = singlePanel.dataset.mmSpnTitle || link.textContent;
             panelsDiv.append(singlePanel);
         }
@@ -46,6 +47,7 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
      * @param {HTMLElement} panel Panel to open.
      */
     MmSlidingPanelsNavigation.prototype.openPanel = function (panel) {
+        panel.classList.remove("mm-hidden");
         /** Title above the panel to open. */
         var title = panel.dataset.mmSpnTitle;
         //  Use the default title.
@@ -56,6 +58,7 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
         this.mmSpnTitle.innerHTML = title;
         //  Unset all panels from being opened and parent.
         $(".mm-spn--open", this.node).forEach(function (open) {
+            open.classList.add("mm-hidden");
             open.classList.remove("mm-spn--open");
         });
         //  Set the current panel as being opened.
@@ -83,7 +86,6 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
      * Initialize the click event handlers.
      */
     MmSlidingPanelsNavigation.prototype._initAnchors = function () {
-        var _this = this;
         /**
          * Clicking an A in the menu: prevent bubbling up to the LI.
          *
@@ -96,40 +98,10 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
             }
             return false;
         };
-        /**
-         * Click a LI or SPAN in the menu: open its submenu (if present).
-         *
-         * @param   {HTMLElement}    target The clicked element.
-         * @return  {boolean}               Whether or not the event was handled.
-         */
-        var openSubmenu = function (target) {
-            /** Parent listitem for the submenu.  */
-            var listitem;
-            //  Find the parent listitem.
-            if (target.closest('.span')) {
-                listitem = target.parentElement;
-            }
-            else if (target.closest('.mm-listitem')) {
-                listitem = target;
-            }
-            else {
-                listitem = false;
-            }
-            if (listitem) {
-                r(listitem.children).forEach(function (panel) {
-                    if (panel.matches('.mm-panel')) {
-                        _this.openPanel(panel);
-                    }
-                });
-                return true;
-            }
-            return false;
-        };
         this.node.addEventListener('click', function (evnt) {
             var target = evnt.target;
             var handled = false;
             handled = handled || clickAnchor(target);
-            handled = handled || openSubmenu(target);
             if (handled) {
                 evnt.stopImmediatePropagation();
             }

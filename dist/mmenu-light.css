@@ -424,6 +424,10 @@ html.mm-ocd-opened {
 .no-display {
   display: none !important;
 }
+.mm-hidden {
+  visibility: hidden;
+  opacity: 0;
+}
 .mm-spn {
   display: none;
 }

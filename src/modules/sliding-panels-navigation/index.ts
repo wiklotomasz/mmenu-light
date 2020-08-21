@@ -64,6 +64,7 @@ export default class MmSlidingPanelsNavigation {
                 link.href = '#' + id;
             }
             singlePanel.id = id;
+            singlePanel.classList.add(`mm-hidden`);
             singlePanel.dataset.mmSpnTitle = singlePanel.dataset.mmSpnTitle || link.textContent;
             panelsDiv.append(singlePanel);
         }
@@ -77,6 +78,7 @@ export default class MmSlidingPanelsNavigation {
      * @param {HTMLElement} panel Panel to open.
      */
     openPanel(panel: HTMLElement) {
+        panel.classList.remove(`mm-hidden`);
         /** Title above the panel to open. */
         let title = panel.dataset.mmSpnTitle;
 
@@ -90,6 +92,7 @@ export default class MmSlidingPanelsNavigation {
 
         //  Unset all panels from being opened and parent.
         $(`.mm-spn--open`, this.node).forEach(open => {
+            open.classList.add(`mm-hidden`);
             open.classList.remove(`mm-spn--open`);
         });
 
@@ -137,43 +140,11 @@ export default class MmSlidingPanelsNavigation {
             return false;
         };
 
-        /**
-         * Click a LI or SPAN in the menu: open its submenu (if present).
-         *
-         * @param   {HTMLElement}    target The clicked element.
-         * @return  {boolean}               Whether or not the event was handled.
-         */
-        const openSubmenu = (target: HTMLElement): boolean => {
-            /** Parent listitem for the submenu.  */
-            let listitem;
-
-            //  Find the parent listitem.
-            if (target.closest('.span')) {
-                listitem = target.parentElement;
-            } else if (target.closest('.mm-listitem')) {
-                listitem = target;
-            } else {
-                listitem = false;
-            }
-
-            if (listitem) {
-                r(listitem.children).forEach(panel => {
-                    if (panel.matches('.mm-panel')) {
-                        this.openPanel(panel);
-                    }
-                });
-
-                return true;
-            }
-            return false;
-        };
-
         this.node.addEventListener('click', evnt => {
             let target = evnt.target as HTMLElement;
             let handled = false;
 
             handled = handled || clickAnchor(target);
-            handled = handled || openSubmenu(target);
 
             if (handled) {
                 evnt.stopImmediatePropagation();
