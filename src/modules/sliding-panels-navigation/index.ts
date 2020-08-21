@@ -64,6 +64,7 @@ export default class MmSlidingPanelsNavigation {
                 link.href = '#' + id;
             }
             singlePanel.id = id;
+            singlePanel.dataset.mmSpnTitle = singlePanel.dataset.mmSpnTitle || link.textContent;
             panelsDiv.append(singlePanel);
         }
 
@@ -76,30 +77,8 @@ export default class MmSlidingPanelsNavigation {
      * @param {HTMLElement} panel Panel to open.
      */
     openPanel(panel: HTMLElement) {
-        /** Parent LI for the panel.  */
-        let listitem = panel.parentElement;
-
         /** Title above the panel to open. */
         let title = panel.dataset.mmSpnTitle;
-
-        //  Opening the main level UL.
-        if (panel.id === 'mm-0') {
-            this.node.classList.add(`mm-spn--main`);
-        }
-
-        //  Opening a sub level UL.
-        else {
-            this.node.classList.remove(`mm-spn--main`);
-
-            //  Find title from parent LI.
-            if (!title) {
-                r(listitem.children).forEach(child => {
-                    if (child.matches('a, .span')) {
-                        title = child.textContent;
-                    }
-                });
-            }
-        }
 
         //  Use the default title.
         if (!title) {

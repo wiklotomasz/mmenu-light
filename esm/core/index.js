@@ -93,7 +93,6 @@ var MmenuLight = /** @class */ (function () {
         var _this = this;
         var mmenu = '#menu-open';
         document.addEventListener('open:finish', function () {
-            console.log('uruchamiam open:finish');
             history.pushState(null, document.title, mmenu);
         });
         //back menu or close menu on history back
@@ -108,15 +107,9 @@ var MmenuLight = /** @class */ (function () {
         //set default history on menu close
         document.addEventListener('close:finish', function () {
             history.back();
-            // history.pushState(
-            //     null,
-            //     document.title,
-            //     location.pathname + location.search
-            // );
         });
     };
     MmenuLight.prototype.handleClosings = function () {
-        console.log('uruchamiam handleClosings');
         this.removeState();
         var parent = this.state[this.state.length - 1];
         if (parent) {

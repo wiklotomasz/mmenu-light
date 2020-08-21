@@ -35,6 +35,7 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
                 link.href = '#' + id;
             }
             singlePanel.id = id;
+            singlePanel.dataset.mmSpnTitle = singlePanel.dataset.mmSpnTitle || link.textContent;
             panelsDiv.append(singlePanel);
         }
         this.node.append(panelsDiv);
@@ -45,59 +46,21 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
      * @param {HTMLElement} panel Panel to open.
      */
     MmSlidingPanelsNavigation.prototype.openPanel = function (panel) {
-        /** Parent LI for the panel.  */
-        var listitem = panel.parentElement;
-        //  Sliding submenus
-        if (this.slidingSubmenus) {
-            /** Title above the panel to open. */
-            var title_1 = panel.dataset.mmSpnTitle;
-            //  Opening the main level UL.
-            if (panel.id === 'mm-0') {
-                this.node.classList.add("mm-spn--main");
-            }
-            //  Opening a sub level UL.
-            else {
-                this.node.classList.remove("mm-spn--main");
-                //  Find title from parent LI.
-                if (!title_1) {
-                    r(listitem.children).forEach(function (child) {
-                        if (child.matches('a, .span')) {
-                            title_1 = child.textContent;
-                        }
-                    });
-                }
-            }
-            //  Use the default title.
-            if (!title_1) {
-                title_1 = this.title;
-            }
-            //  Set the title.
-            this.mmSpnTitle.innerHTML = title_1;
-            //  Unset all panels from being opened and parent.
-            $(".mm-spn--open", this.node).forEach(function (open) {
-                open.classList.remove("mm-spn--open");
-            });
-            //  Set the current panel as being opened.
-            panel.classList.add("mm-spn--open");
-            document.dispatchEvent(new Event('openPanel:finish'));
+        /** Title above the panel to open. */
+        var title = panel.dataset.mmSpnTitle;
+        //  Use the default title.
+        if (!title) {
+            title = this.title;
         }
-        // Vertical submenus
-        // else {
-        //     /** Whether or not the panel is currently opened. */
-        //     const isOpened = panel.matches(`.mm-spn--open`);
-        //     //  Unset all panels from being opened and parent.
-        //     $(`.mm-spn--open`, this.node).forEach(open => {
-        //         open.classList.remove(`mm-spn--open`);
-        //     });
-        //     //  Toggle the current panel.
-        //     panel.classList[isOpened ? 'remove' : 'add'](`mm-spn--open`);
-        //     //  Set all parent panels as being opened.
-        //     let parent = panel.parentElement.closest('.mm-panel');
-        //     while (parent) {
-        //         parent.classList.add(`mm-spn--open`);
-        //         parent = parent.parentElement.closest('.mm-panel');
-        //     }
-        // }
+        //  Set the title.
+        this.mmSpnTitle.innerHTML = title;
+        //  Unset all panels from being opened and parent.
+        $(".mm-spn--open", this.node).forEach(function (open) {
+            open.classList.remove("mm-spn--open");
+        });
+        //  Set the current panel as being opened.
+        panel.classList.add("mm-spn--open");
+        document.dispatchEvent(new Event('openPanel:finish'));
     };
     /**
      * Initiate the selected listitem / open the current panel.
