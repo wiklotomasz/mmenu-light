@@ -100,18 +100,15 @@ export default class MmenuLight {
 
     openPanelByHash(href) {
         if (href && href.length > 1 && href.slice(0, 1) == '#') {
-            try {
-                let panel = this.menu.querySelector(href);
-                if (panel && panel.matches('.mm-panel')) {
-                    this.navigator.openPanel(panel);
-                    if (!this.drawer.isMenuOpen) {
-                        this.drawer.open();
-                    }
-                    return true;
-                }
-            } catch (err) {
-                console.error('Didnt find corresponding panel in main navigation');
+            let panel = (this.menu.querySelector(href) as HTMLElement);
+            this.navigator.openPanel(panel);
+            if (!this.drawer.isMenuOpen) {
+                this.drawer.open();
             }
+            return true;
+        } else {
+            console.error('Didnt find corresponding panel in main navigation');
+            return false;
         }
     }
 

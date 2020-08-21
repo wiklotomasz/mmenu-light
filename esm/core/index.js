@@ -61,19 +61,16 @@ var MmenuLight = /** @class */ (function () {
     };
     MmenuLight.prototype.openPanelByHash = function (href) {
         if (href && href.length > 1 && href.slice(0, 1) == '#') {
-            try {
-                var panel = this.menu.querySelector(href);
-                if (panel && panel.matches('.mm-panel')) {
-                    this.navigator.openPanel(panel);
-                    if (!this.drawer.isMenuOpen) {
-                        this.drawer.open();
-                    }
-                    return true;
-                }
+            var panel = this.menu.querySelector(href);
+            this.navigator.openPanel(panel);
+            if (!this.drawer.isMenuOpen) {
+                this.drawer.open();
             }
-            catch (err) {
-                console.error('Didnt find corresponding panel in main navigation');
-            }
+            return true;
+        }
+        else {
+            console.error('Didnt find corresponding panel in main navigation');
+            return false;
         }
     };
     MmenuLight.prototype.addState = function (hash) {

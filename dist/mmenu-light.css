@@ -236,7 +236,7 @@ html.mm-ocd-opened {
   -webkit-overflow-scrolling: touch;
   position: absolute;
   top: 0;
-  left: 100%;
+  left: -100%;
   bottom: 0;
   z-index: 2;
   width: 100%;
