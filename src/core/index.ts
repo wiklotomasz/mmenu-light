@@ -16,6 +16,12 @@ export default class MmenuLight {
     /** The Off-canvas instance. */
     drawer: MmOffCanvasDrawer;
 
+    /** Nav history state */
+    state: Array<string>;
+
+    /** menuId */
+    _menuId: string;
+
     /**
      * Create a lightweight mobile menu.
      *
@@ -25,8 +31,18 @@ export default class MmenuLight {
         //  Store the menu node.
         this.menu = menu;
 
+        // Set Menu Id
+        this._menuId = '#mm-0';
+
+        // Setup state
+        this.state = [this._menuId];
+
         // Init history back functionality
         this.handleBackButton();
+
+        document.addEventListener('close:finish', () => {
+            this.initEmptyState();
+        });
     }
 
     /**
@@ -80,18 +96,41 @@ export default class MmenuLight {
         const navOpener = evnt.target.closest('.nav-opener');
         const href = navOpener.hash;
 
+        this.addState(href);
+        this.openPanelByHash(href);
+    }
+
+    openPanelByHash(href) {
         if (href && href.length > 1 && href.slice(0, 1) == '#') {
             try {
                 let panel = this.menu.querySelector(href);
                 if (panel && panel.matches('.mm-panel')) {
                     this.navigator.openPanel(panel);
-                    this.drawer.open();
+                    if (!this.drawer.isMenuOpen) {
+                        this.drawer.open();
+                    }
                     return true;
                 }
             } catch (err) {
                 console.error('Didnt find corresponding panel in main navigation');
             }
-        }	
+        }
+    }
+
+    addState(hash) {
+        if (hash !== this._menuId) {
+            this.state.push(hash);
+        }
+    }
+
+    removeState() {
+        if (this.state.length) {
+            this.state.pop();
+        }
+    }
+
+    initEmptyState() {
+        this.state = [this._menuId];
     }
 
     handleBackButton() {
@@ -146,20 +185,14 @@ export default class MmenuLight {
     }
 
     handleClosings() {
-        /** The opened ULs. */
-        let panels = $(`.mm-spn--open`, this.navigator.node);
+        this.removeState();
+        const parent = this.state[this.state.length - 1];
 
-        /** The last opened UL. */
-        let panel = panels[panels.length - 1];
-        if (panel) {
-            /** The second to last opened UL. */
-            let parent = panel.parentElement.closest('.mm-panel');
-            if (parent) {
-                this.navigator.openPanel(parent);
-                return true;
-            } else {
-                this.drawer.close();
-            }
+        if (parent) {
+            this.openPanelByHash(parent);
+            return true;
+        } else {
+            this.drawer.close();
         }
         return false;
     }

@@ -1,4 +1,3 @@
-import { $ } from '../modules/helpers';
 import MmSlidingPanelsNavigation from '../modules/sliding-panels-navigation/index';
 import MmOffCanvasDrawer from '../modules/offcanvas-drawer/index';
 /**
@@ -11,10 +10,18 @@ var MmenuLight = /** @class */ (function () {
      * @param {HTMLElement} menu                HTML element for the menu.
      */
     function MmenuLight(menu) {
+        var _this = this;
         //  Store the menu node.
         this.menu = menu;
+        // Set Menu Id
+        this._menuId = '#mm-0';
+        // Setup state
+        this.state = [this._menuId];
         // Init history back functionality
         this.handleBackButton();
+        document.addEventListener('close:finish', function () {
+            _this.initEmptyState();
+        });
     }
     /**
      * Add navigation for the menu.
@@ -42,25 +49,6 @@ var MmenuLight = /** @class */ (function () {
             /** Original location in the DOM for the menu. */
             var orgLocation = document.createComment('original menu location');
             this.menu.after(orgLocation);
-            //	Wrap the panels in a node.
-            // let panels = DOM.create('div.mm-panels');
-            // DOM.children(this.menu).forEach((panel) => {
-            //     panels.append(panel);
-            // });
-            // this.menu.append(panels);
-            // var panel = this.menu.querySelectorAll('.mm-panel');
-            // for (let i = 0; i < panel.length; i++) {
-            //     const singlePanel = panel[i];
-            //     let link = panel[i].parentElement;
-            //     let title = link.querySelector('.nav-opener');
-            //     if (title) {
-            //         title.setAttribute('href', '#mm-'+i);
-            //     }
-            //     singlePanel.setAttribute('data-panel-id','#mm-'+i);
-            //     panels.append(panel[i]);
-            // }
-            //this.menu.append(panels);
-            //  Enable
             this.drawer.content.append(this.menu);
         }
         return this.drawer;
@@ -68,12 +56,18 @@ var MmenuLight = /** @class */ (function () {
     MmenuLight.prototype.handleOpen = function (evnt) {
         var navOpener = evnt.target.closest('.nav-opener');
         var href = navOpener.hash;
+        this.addState(href);
+        this.openPanelByHash(href);
+    };
+    MmenuLight.prototype.openPanelByHash = function (href) {
         if (href && href.length > 1 && href.slice(0, 1) == '#') {
             try {
                 var panel = this.menu.querySelector(href);
                 if (panel && panel.matches('.mm-panel')) {
                     this.navigator.openPanel(panel);
-                    this.drawer.open();
+                    if (!this.drawer.isMenuOpen) {
+                        this.drawer.open();
+                    }
                     return true;
                 }
             }
@@ -81,6 +75,22 @@ var MmenuLight = /** @class */ (function () {
                 console.error('Didnt find corresponding panel in main navigation');
             }
         }
+    };
+    MmenuLight.prototype.addState = function (hash) {
+        if (hash !== this._menuId) {
+            this.state.push(hash);
+        }
+        console.log(this.state);
+    };
+    MmenuLight.prototype.removeState = function () {
+        console.log('usuwam 1 state');
+        if (this.state.length) {
+            this.state.pop();
+        }
+        console.log(this.state);
+    };
+    MmenuLight.prototype.initEmptyState = function () {
+        this.state = [this._menuId];
     };
     MmenuLight.prototype.handleBackButton = function () {
         var _this = this;
@@ -125,20 +135,16 @@ var MmenuLight = /** @class */ (function () {
         });
     };
     MmenuLight.prototype.handleClosings = function () {
-        /** The opened ULs. */
-        var panels = $(".mm-spn--open", this.navigator.node);
-        /** The last opened UL. */
-        var panel = panels[panels.length - 1];
-        if (panel) {
-            /** The second to last opened UL. */
-            var parent_1 = panel.parentElement.closest('.mm-panel');
-            if (parent_1) {
-                this.navigator.openPanel(parent_1);
-                return true;
-            }
-            else {
-                this.drawer.close();
-            }
+        console.log('handle closing');
+        this.removeState();
+        var parent = this.state[this.state.length - 1];
+        console.log('bede otwierał', parent);
+        if (parent) {
+            this.openPanelByHash(parent);
+            return true;
+        }
+        else {
+            this.drawer.close();
         }
         return false;
     };
