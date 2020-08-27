@@ -48,7 +48,7 @@
         height: 100%;
     }
 
-    &__title {
+    .mm-header__title {
         margin: 0;
         font-size: 14px;
         //  Ellipsis.
@@ -321,27 +321,22 @@
         margin-left: auto;
     }
 
-    &__button,
-    button {
+    &__button {
         width: 100%;
     }
 
     &__button {
-        button {
-            min-width: 13em;
-            max-width: 100%;
-            color: #8E0038;
+        a {
+            padding: 0;
+        }
+
+        .ee_button {
+            color: @theme-brand-color;
             background: transparent;
-            border: 1px solid;
-            border-color: #8E0038;
-            padding: 0 16px;
-            border-radius: 100px;
-            border-width: 2px;
-            font-size: 14px;
-            font-weight: bold;
-            letter-spacing: 0.25px;
-            line-height: 20px;
-            cursor: pointer;
+            border-color: @theme-brand-color;
+            box-shadow: none;
+            padding-top: 6px;
+            padding-bottom: 6px;
         }
     }
 }
