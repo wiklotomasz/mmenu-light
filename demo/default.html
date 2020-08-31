@@ -284,7 +284,7 @@
 		<script src="../dist/mmenu-light.js"></script>
 		<script>
 			var mainMenuSelector = document.querySelector('#mainmenu');
-			var NavOpeners = document.querySelectorAll( '.nav-opener' );
+			var navOpeners = document.querySelectorAll( '.nav-opener' );
 
 			if (mainMenuSelector) {
 				var menu = new MmenuLight(mainMenuSelector);
@@ -293,9 +293,9 @@
 			}
 
 			//Open the menu on selected panel
-			if (NavOpeners) {
-				for (let i = 0; i < NavOpeners.length; i++) {
-					NavOpeners[i].addEventListener( 'click', function(evnt) {
+			if (navOpeners) {
+				for (let i = 0; i < navOpeners.length; i++) {
+					navOpeners[i].addEventListener( 'click', function(evnt) {
 						evnt.preventDefault();
 						menu.handleOpen(evnt);	
 					});
