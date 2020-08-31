@@ -130,6 +130,12 @@ html.mm-ocd-opened {
   background: #8e0038;
   color: #ffffff;
 }
+@media (min-width: 912px) {
+  .mm-header {
+    height: 72px;
+    margin-bottom: 48px;
+  }
+}
 .mm-header__wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -143,7 +149,7 @@ html.mm-ocd-opened {
   width: 100%;
   height: 100%;
 }
-.mm-header__title {
+.mm-header .mm-header__title {
   margin: 0;
   font-size: 14px;
   overflow: hidden;
@@ -151,7 +157,7 @@ html.mm-ocd-opened {
   text-overflow: ellipsis;
 }
 @media (min-width: 912px) {
-  .mm-header__title {
+  .mm-header .mm-header__title {
     font-size: 16px;
   }
 }
@@ -181,6 +187,12 @@ html.mm-ocd-opened {
   margin-right: 24px;
   margin-bottom: 20px;
   text-align: center;
+}
+@media (min-width: 912px) {
+  .mm-searchbox {
+    height: 48px;
+    margin-bottom: 36px;
+  }
 }
 .mm-searchbox__input:focus + svg {
   fill: #333333;
@@ -373,25 +385,20 @@ html.mm-ocd-opened {
 .mm-wrapper__arrow {
   margin-left: auto;
 }
-.mm-wrapper__button,
-.mm-wrapper button {
+.mm-wrapper__button {
   width: 100%;
 }
-.mm-wrapper__button button {
-  min-width: 13em;
-  max-width: 100%;
-  color: #8E0038;
+.mm-wrapper__button a {
+  padding: 0;
+}
+.mm-wrapper__button .ee_button {
+  color: #8e0038;
   background: transparent;
-  border: 1px solid;
-  border-color: #8E0038;
-  padding: 0 16px;
-  border-radius: 100px;
-  border-width: 2px;
-  font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 0.25px;
-  line-height: 20px;
-  cursor: pointer;
+  border-color: #8e0038;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 .mm-wrapper--phone .mm-wrapper__heading {
   font-size: 16px;
@@ -400,6 +407,15 @@ html.mm-ocd-opened {
 .mm-wrapper--phone .mm-wrapper__heading,
 .mm-wrapper--phone .mm-wrapper__icon {
   color: #8e0038;
+}
+.mm-wrapper--phone .mm-wrapper__subtext {
+  font-size: 12px;
+  line-height: 18px;
+  color: #333333;
+}
+.mm-wrapper--phone img {
+  -webkit-filter: invert(8%) sepia(96%) saturate(5917%) hue-rotate(327deg) brightness(75%) contrast(111%);
+          filter: invert(8%) sepia(96%) saturate(5917%) hue-rotate(327deg) brightness(75%) contrast(111%);
 }
 .mm-box:before {
   content: '';
@@ -435,7 +451,15 @@ html.mm-ocd-opened {
   display: block;
 }
 .mm-spn.mm-spn--navbar .mm-panel {
-  top: 177px;
+  top: 165px;
+}
+@media (min-width: 912px) {
+  .mm-spn.mm-spn--navbar .mm-panel {
+    top: 205px;
+  }
+}
+.mm-spn .mm-header + .mm-panels > .mm-panel {
+  top: 90px;
 }
 .mm-spn.mm-spn--vertical {
   overflow-y: auto;

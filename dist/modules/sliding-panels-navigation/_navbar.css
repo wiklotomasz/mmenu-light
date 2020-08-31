@@ -13,5 +13,13 @@
 /** Panel offset. */
 /** Panel top offset. */
 .mm-spn.mm-spn--navbar .mm-panel {
-  top: 177px;
+  top: 165px;
+}
+@media (min-width: 912px) {
+  .mm-spn.mm-spn--navbar .mm-panel {
+    top: 205px;
+  }
+}
+.mm-spn .mm-header + .mm-panels > .mm-panel {
+  top: 90px;
 }

@@ -37,6 +37,9 @@ export default class MmenuLight {
 
         // Init history back functionality
         this.handleBackButton();
+        
+        // Add class to body
+        document.documentElement.classList.add(`mm-init`);
 
         document.addEventListener('close:finish', () => {
             this.initEmptyState();

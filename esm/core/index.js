@@ -19,6 +19,7 @@ var MmenuLight = /** @class */ (function () {
         this.state = [this._menuId];
         // Init history back functionality
         this.handleBackButton();
+        document.documentElement.classList.add("mmenu-navigation");
         document.addEventListener('close:finish', function () {
             _this.initEmptyState();
         });

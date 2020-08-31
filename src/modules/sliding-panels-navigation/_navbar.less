@@ -1,12 +1,26 @@
 @import "_variables";
 @import '_additional-variables';
 
+.mm-init .esc_container {
+    @media (min-width: (@breakpoint-xl)) {
+        margin-top: 95px !important;
+    }
+}
+
 .mm-spn {
     //  Listviews
     &.mm-spn--navbar {
         //  All listviews.
         .mm-panel {
             top: @mmspn_panel_top_offset + 1;
+
+            @media (min-width: (@breakpoint-l)) {
+                top: @mmspn_panel_top_offset--desktop + 1;
+            }
         }
+    }
+
+    .mm-header + .mm-panels > .mm-panel {
+        top: 90px;
     }
 }

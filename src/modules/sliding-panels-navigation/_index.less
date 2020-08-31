@@ -36,9 +36,14 @@
 //Menu header
 .mm-header {
     height: @mmspn_header_height;
-    margin-bottom: @mmspn_searchbox_margin-bottom;
+    margin-bottom: @mmspn_header_margin-bottom;
     background: @theme-brand-color;
     color: @theme-white;
+
+    @media (min-width: (@breakpoint-l)) {
+        height: @mmspn_header_height--desktop;
+        margin-bottom: @mmspn_header_margin-bottom--desktop;
+    }
 
     &__wrapper {
         display: flex;
@@ -87,8 +92,13 @@
     width: calc(100% - 48px);
     margin-left: 24px;
     margin-right: 24px;
-    margin-bottom: @mmspn_header_margin-bottom - 12px;
+    margin-bottom: @mmspn_searchbox_margin-bottom;
     text-align: center;
+
+    @media (min-width: (@breakpoint-l)) {
+        height: @mmspn_searchbox_height--desktop;
+        margin-bottom: @mmspn_searchbox_margin-bottom--desktop;
+    }
 
     &__input:focus + svg {
         fill: @theme-darkest-gray;
@@ -351,6 +361,16 @@
     .mm-wrapper__heading,
     .mm-wrapper__icon {
         color: @theme-brand-color;
+    }
+
+    .mm-wrapper__subtext {
+        font-size: 12px;
+        line-height: 18px;
+        color: @theme-darkest-gray;
+    }
+
+    img {
+        filter: invert(8%) sepia(96%) saturate(5917%) hue-rotate(327deg) brightness(75%) contrast(111%);
     }
 }
 
