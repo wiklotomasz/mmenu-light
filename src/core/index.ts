@@ -94,8 +94,8 @@ export default class MmenuLight {
     }
 
     handleOpen(evnt) {
-        const navOpener = evnt.target.closest('.nav-opener');
-        const href = navOpener.hash;
+        const navOpener = (evnt.target.closest('.nav-opener') as HTMLAnchorElement);
+        const href = (navOpener.hash as string);
 
         this.addState(href);
         this.openPanelByHash(href);
