@@ -13,6 +13,10 @@ var MmenuLight = /** @class */ (function () {
         var _this = this;
         //  Store the menu node.
         this.menu = menu;
+        // find Dom elements
+        var closeButton = this.menu.querySelector('.mm-btn_close');
+        var prevButton = this.menu.querySelector('.mm-btn_prev');
+        var searchOpener = this.menu.querySelector('#search-mobile-opener');
         // Set Menu Id
         this._menuId = '#mm-0';
         // Setup state
@@ -24,6 +28,24 @@ var MmenuLight = /** @class */ (function () {
         document.addEventListener('close:finish', function () {
             _this.initEmptyState();
         });
+        if (closeButton) {
+            closeButton.addEventListener('click', function (evnt) {
+                evnt.preventDefault();
+                _this.drawer.close();
+            });
+        }
+        if (prevButton) {
+            prevButton.addEventListener('click', function (evnt) {
+                evnt.preventDefault();
+                _this.handleClosings();
+            });
+        }
+        if (searchOpener) {
+            searchOpener.addEventListener('click', function (evnt) {
+                evnt.preventDefault();
+                _this.handleSearchOpen(evnt);
+            });
+        }
     }
     /**
      * Add navigation for the menu.

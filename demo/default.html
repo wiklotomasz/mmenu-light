@@ -285,9 +285,6 @@
 		<script>
 			var mainMenuSelector = document.querySelector('#mainmenu');
 			var NavOpeners = document.querySelectorAll( '.nav-opener' );
-			var closeButton = document.querySelector( '.mm-btn_close' );
-			var prevButton = document.querySelector( '.mm-btn_prev' );
-			var searchOpener = document.querySelector('#search-mobile-opener');
 
 			if (mainMenuSelector) {
 				var menu = new MmenuLight(mainMenuSelector);
@@ -303,27 +300,6 @@
 						menu.handleOpen(evnt);	
 					});
 				}
-			}
-
-			if (closeButton) {
-				closeButton.addEventListener( 'click', function(evnt) {
-					evnt.preventDefault();
-					drawer.close();
-				});
-			}
-
-			if (prevButton) {
-				prevButton.addEventListener( 'click', function(evnt) {
-					evnt.preventDefault();
-					menu.handleClosings();
-				});
-			}
-
-			if (searchOpener) {
-				searchOpener.addEventListener( 'click', function(evnt) {
-					evnt.preventDefault();
-					menu.handleSearchOpen(evnt);
-				});
 			}
 		</script>
 	</body>

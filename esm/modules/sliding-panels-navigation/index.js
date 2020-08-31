@@ -31,7 +31,7 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
             var singlePanel = panels[i];
             var id = singlePanel.id || uniqueId();
             var link = singlePanel.previousElementSibling;
-            if (link) {
+            if (link && !link.href) {
                 link.href = '#' + id;
             }
             singlePanel.id = id;

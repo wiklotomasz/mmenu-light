@@ -12,11 +12,15 @@
 /** Searchbox height. */
 /** Panel offset. */
 /** Panel top offset. */
+.search-component--suggestions {
+  -webkit-transition: left 0.3s ease 0s;
+  transition: left 0.3s ease 0s;
+}
 .mm-spn .search-component--suggestions {
-  display: none;
+  left: -100%;
 }
 .mm-spn--open .search-component--suggestions {
-  display: block;
+  left: 0;
 }
 .mm-spn .mm-searchbox {
   position: relative;

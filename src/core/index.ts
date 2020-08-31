@@ -29,6 +29,11 @@ export default class MmenuLight {
         //  Store the menu node.
         this.menu = menu;
 
+        // find Dom elements
+        var closeButton = this.menu.querySelector( '.mm-btn_close' );
+        var prevButton = this.menu.querySelector( '.mm-btn_prev' );
+        var searchOpener = this.menu.querySelector('#search-mobile-opener');
+
         // Set Menu Id
         this._menuId = '#mm-0';
 
@@ -44,6 +49,27 @@ export default class MmenuLight {
         document.addEventListener('close:finish', () => {
             this.initEmptyState();
         });
+
+        if (closeButton) {
+            closeButton.addEventListener( 'click', (evnt) => {
+                evnt.preventDefault();
+                this.drawer.close();
+            });
+        }
+
+        if (prevButton) {
+            prevButton.addEventListener( 'click', (evnt) => {
+                evnt.preventDefault();
+                this.handleClosings();
+            });
+        }
+
+        if (searchOpener) {
+            searchOpener.addEventListener( 'click', (evnt) => {
+                evnt.preventDefault();
+                this.handleSearchOpen(evnt);
+            });
+        }
     }
 
     /**
