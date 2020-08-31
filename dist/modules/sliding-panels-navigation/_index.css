@@ -95,58 +95,6 @@
 .mm-header .mm-btn svg {
   fill: #ffffff;
 }
-.mm-searchbox {
-  position: relative;
-  height: 48px;
-  width: calc(100% - 48px);
-  margin-left: 24px;
-  margin-right: 24px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-@media (min-width: 912px) {
-  .mm-searchbox {
-    height: 48px;
-    margin-bottom: 36px;
-  }
-}
-.mm-searchbox__input:focus + svg {
-  fill: #333333;
-}
-.mm-searchbox__input:focus ~ .svg-icon--hide-on-close {
-  display: none;
-}
-.mm-searchbox__input:focus ~ .svg-icon--hide-on-open {
-  display: block;
-}
-.mm-searchbox .svg-icon {
-  position: absolute;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  top: 50%;
-  fill: #AEAEAE;
-}
-.mm-searchbox .svg-icon--left {
-  left: 24px;
-}
-.mm-searchbox .svg-icon--right {
-  right: 24px;
-}
-.mm-searchbox .svg-icon--hide-on-open {
-  display: none;
-}
-.mm-searchbox .svg-icon.ee_icon-microphoneicon {
-  fill: #333333;
-}
-.mm-searchbox__input {
-  width: 100%;
-  padding: 12px 50px;
-  height: 48px;
-  font-size: 14px;
-  border-radius: 32px;
-  border: none;
-  background-color: #F2F2F2;
-}
 .results__header {
   padding-left: 24px;
 }
@@ -365,6 +313,11 @@
 }
 .mm-ocd__content .mm-spn {
   display: block;
+}
+@media (min-width: 1152px) {
+  .mm-init .esc_container {
+    margin-top: 95px !important;
+  }
 }
 .mm-spn.mm-spn--navbar .mm-panel {
   top: 165px;

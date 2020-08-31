@@ -12,6 +12,11 @@
 /** Searchbox height. */
 /** Panel offset. */
 /** Panel top offset. */
+@media (min-width: 1152px) {
+  .mm-init .esc_container {
+    margin-top: 95px !important;
+  }
+}
 .mm-spn.mm-spn--navbar .mm-panel {
   top: 165px;
 }

@@ -46,9 +46,10 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
      *
      * @param {HTMLElement} panel Panel to open.
      */
-    MmSlidingPanelsNavigation.prototype.openPanel = function (panel) {
-        /** Title above the panel to open. */
-        var title = panel.dataset.mmSpnTitle;
+    MmSlidingPanelsNavigation.prototype.openPanel = function (panel, title) {
+        if (!title) {
+            title = panel.dataset.mmSpnTitle;
+        }
         //  Use the default title.
         if (!title) {
             title = this.title;

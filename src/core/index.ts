@@ -101,6 +101,13 @@ export default class MmenuLight {
         this.openPanelByHash(href);
     }
 
+    handleSearchOpen(evnt) {
+        const searchDiv = evnt.target.closest('#search-mobile-opener');
+
+        this.addState('#search');
+        this.navigator.openPanel(searchDiv, 'Suche');
+    }
+
     openPanelByHash(href) {
         if (href && href.length > 1 && href.slice(0, 1) == '#') {
             let panel = (this.menu.querySelector(href) as HTMLElement);
@@ -116,7 +123,7 @@ export default class MmenuLight {
     }
 
     addState(hash) {
-        if (hash !== this._menuId) {
+        if (hash !== this._menuId && hash != this.state[this.state.length - 1]) {
             this.state.push(hash);
         }
     }

@@ -1,0 +1,108 @@
+/** Animation duration. */
+/** Arrow size. */
+/** Border opacity. */
+/** Navbar opacity. */
+/** Item height. */
+/** Item indent. */
+/** Item indent. */
+/** Line height. */
+/** Header margin-bottom. */
+/** Header height. */
+/** Searchbox margin-bottom. */
+/** Searchbox height. */
+/** Panel offset. */
+/** Panel top offset. */
+.mm-spn .search-component--suggestions {
+  display: none;
+}
+.mm-spn--open .search-component--suggestions {
+  display: block;
+}
+.mm-spn .mm-searchbox {
+  position: relative;
+  height: 48px;
+  width: calc(100% - 48px);
+  margin-left: 24px;
+  margin-right: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+@media (min-width: 912px) {
+  .mm-spn .mm-searchbox {
+    height: 48px;
+    margin-bottom: 36px;
+  }
+}
+.mm-spn .mm-searchbox.mm-hidden {
+  visibility: visible;
+  opacity: 1;
+}
+.mm-spn .mm-searchbox .search-component--content__mobile {
+  display: block;
+  margin-left: 0;
+}
+.mm-spn .mm-searchbox .ee_input-wrapper {
+  position: relative;
+}
+.mm-spn .mm-searchbox .ee_input-adornment {
+  position: absolute;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  top: 50%;
+  fill: #AEAEAE;
+}
+.mm-spn .mm-searchbox .ee_input-adornment--left {
+  left: 20px;
+}
+.mm-spn .mm-searchbox .ee_input-adornment .ee_icon-searchicon {
+  fill: #333333 !important;
+}
+.mm-spn .mm-searchbox .ee_input-adornment--right {
+  right: 20px;
+}
+.mm-spn .mm-searchbox .ee_input-adornment__label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.mm-spn .mm-searchbox .search-component--input {
+  padding: 0;
+  display: block;
+}
+.mm-spn .mm-searchbox .ee_input {
+  padding: 12px 58px 12px 50px !important;
+  height: 48px;
+  font-size: 14px;
+  border-radius: 32px !important;
+  border: none;
+  background-color: #F2F2F2 !important;
+}
+.mm-spn .search-component--suggestions,
+.mm-spn .search-component--info,
+.mm-spn .search-component--results {
+  text-align: left;
+  margin-top: 32px;
+}
+@media (min-width: 912px) {
+  .mm-spn .search-component--suggestions,
+  .mm-spn .search-component--info,
+  .mm-spn .search-component--results {
+    margin-top: 48px;
+  }
+}
+.mm-spn .search-component--suggestions p,
+.mm-spn .search-component--info p,
+.mm-spn .search-component--results p {
+  padding-left: 0;
+  font-size: 12px;
+  font-weight: bold;
+  color: #333333;
+}
+.mm-spn .search-component--suggestions ul,
+.mm-spn .search-component--info ul,
+.mm-spn .search-component--results ul {
+  padding-left: 36px;
+}

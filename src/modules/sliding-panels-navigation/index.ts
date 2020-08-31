@@ -76,9 +76,10 @@ export default class MmSlidingPanelsNavigation {
      *
      * @param {HTMLElement} panel Panel to open.
      */
-    openPanel(panel: HTMLElement) {
-        /** Title above the panel to open. */
-        let title = panel.dataset.mmSpnTitle;
+    openPanel(panel: HTMLElement, title?: string) {
+        if (!title) {
+            title = panel.dataset.mmSpnTitle;
+        }
 
         //  Use the default title.
         if (!title) {

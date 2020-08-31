@@ -19,7 +19,8 @@ var MmenuLight = /** @class */ (function () {
         this.state = [this._menuId];
         // Init history back functionality
         this.handleBackButton();
-        document.documentElement.classList.add("mmenu-navigation");
+        // Add class to body
+        document.documentElement.classList.add("mm-init");
         document.addEventListener('close:finish', function () {
             _this.initEmptyState();
         });
@@ -60,6 +61,11 @@ var MmenuLight = /** @class */ (function () {
         this.addState(href);
         this.openPanelByHash(href);
     };
+    MmenuLight.prototype.handleSearchOpen = function (evnt) {
+        var searchDiv = evnt.target.closest('#search-mobile-opener');
+        this.addState('#search');
+        this.navigator.openPanel(searchDiv, 'Suche');
+    };
     MmenuLight.prototype.openPanelByHash = function (href) {
         if (href && href.length > 1 && href.slice(0, 1) == '#') {
             var panel = this.menu.querySelector(href);
@@ -75,7 +81,7 @@ var MmenuLight = /** @class */ (function () {
         }
     };
     MmenuLight.prototype.addState = function (hash) {
-        if (hash !== this._menuId) {
+        if (hash !== this._menuId && hash != this.state[this.state.length - 1]) {
             this.state.push(hash);
         }
     };
