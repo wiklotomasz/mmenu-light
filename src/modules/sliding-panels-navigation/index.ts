@@ -59,7 +59,7 @@ export default class MmSlidingPanelsNavigation {
             const singlePanel = (panels[i] as HTMLElement);
             const id = singlePanel.id || uniqueId();
             let link = (singlePanel.previousElementSibling as HTMLAnchorElement);
-            if (link) {
+            if (link && !link.href) {
                 link.href = '#' + id;
             }
             singlePanel.id = id;
