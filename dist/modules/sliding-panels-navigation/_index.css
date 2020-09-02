@@ -10,6 +10,7 @@
 /** Header height. */
 /** Searchbox margin-bottom. */
 /** Searchbox height. */
+/** Searchbox margin left and right **/
 /** Panel offset. */
 /** Panel top offset. */
 .mmspn-reset {
@@ -93,6 +94,8 @@
   padding-right: 24px;
 }
 .mm-header .mm-btn svg {
+  width: 24px;
+  height: 24px;
   fill: #ffffff;
 }
 .results__header {

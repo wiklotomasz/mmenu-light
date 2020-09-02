@@ -94,6 +94,7 @@ html.mm-ocd-opened {
 /** Header height. */
 /** Searchbox margin-bottom. */
 /** Searchbox height. */
+/** Searchbox margin left and right **/
 /** Panel offset. */
 /** Panel top offset. */
 .mmspn-reset {
@@ -177,6 +178,8 @@ html.mm-ocd-opened {
   padding-right: 24px;
 }
 .mm-header .mm-btn svg {
+  width: 24px;
+  height: 24px;
   fill: #ffffff;
 }
 .results__header {
@@ -440,14 +443,14 @@ html.mm-ocd-opened {
   content: none;
   display: none;
 }
-.search-component--suggestions {
-  -webkit-transition: left 0.3s ease 0s;
-  transition: left 0.3s ease 0s;
+.mm-spn .search-component--suggestions,
+.mm-spn .search-component--info,
+.mm-spn .search-component--results {
+  left: calc(-100% - 24px);
 }
-.mm-spn .search-component--suggestions {
-  left: -100%;
-}
-.mm-spn--open .search-component--suggestions {
+.mm-spn--open .search-component--suggestions,
+.mm-spn--open .search-component--info,
+.mm-spn--open .search-component--results {
   left: 0;
 }
 .mm-spn .mm-searchbox {
@@ -465,6 +468,14 @@ html.mm-ocd-opened {
     margin-bottom: 36px;
   }
 }
+.mm-spn .mm-searchbox.mm-spn--open {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.mm-spn .mm-searchbox.mm-spn--open .ee_icon-searchicon {
+  fill: #333333 !important;
+}
 .mm-spn .mm-searchbox.mm-hidden {
   visibility: visible;
   opacity: 1;
@@ -481,13 +492,12 @@ html.mm-ocd-opened {
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   top: 50%;
-  fill: #AEAEAE;
+}
+.mm-spn .mm-searchbox .ee_input-adornment svg {
+  fill: #AEAEAE !important;
 }
 .mm-spn .mm-searchbox .ee_input-adornment--left {
   left: 20px;
-}
-.mm-spn .mm-searchbox .ee_input-adornment .ee_icon-searchicon {
-  fill: #333333 !important;
 }
 .mm-spn .mm-searchbox .ee_input-adornment--right {
   right: 20px;
@@ -510,13 +520,20 @@ html.mm-ocd-opened {
   font-size: 14px;
   border-radius: 32px !important;
   border: none;
-  background-color: #F2F2F2 !important;
+  background-color: #f2f2f2 !important;
+}
+.mm-spn .mm-searchbox .search-component--info,
+.mm-spn .mm-searchbox ul {
+  padding-left: 36px;
 }
 .mm-spn .search-component--suggestions,
 .mm-spn .search-component--info,
 .mm-spn .search-component--results {
+  position: relative;
   text-align: left;
   margin-top: 32px;
+  -webkit-transition: left 0.3s ease 0s;
+  transition: left 0.3s ease 0s;
 }
 @media (min-width: 912px) {
   .mm-spn .search-component--suggestions,
@@ -533,8 +550,8 @@ html.mm-ocd-opened {
   font-weight: bold;
   color: #333333;
 }
-.mm-spn .search-component--suggestions ul,
-.mm-spn .search-component--info ul,
-.mm-spn .search-component--results ul {
-  padding-left: 36px;
+.mm-spn .search-component--suggestions li:hover,
+.mm-spn .search-component--info li:hover,
+.mm-spn .search-component--results li:hover {
+  background: transparent;
 }

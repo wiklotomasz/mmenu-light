@@ -1,13 +1,15 @@
 @import "_variables";
-@import '_additional-variables';
+@import "_additional-variables";
 
-.search-component--suggestions {
+.search-component--suggestions,
+.search-component--info,
+.search-component--results {
     .mm-spn & {
-        display: none;
+        left: calc(-100% - @mmspn_searchbox_sidemargin--desktop);
     }
 
     .mm-spn--open & {
-        display: block;
+        left: 0;
     }
 }
 
@@ -17,14 +19,22 @@
         position: relative;
         height: @mmspn_searchbox_height;
         width: calc(100% - 48px);
-        margin-left: 24px;
-        margin-right: 24px;
+        margin-left: @mmspn_searchbox_sidemargin--desktop;
+        margin-right: @mmspn_searchbox_sidemargin--desktop;
         margin-bottom: @mmspn_searchbox_margin-bottom;
         text-align: center;
 
         @media (min-width: (@breakpoint-l)) {
             height: @mmspn_searchbox_height--desktop;
             margin-bottom: @mmspn_searchbox_margin-bottom--desktop;
+        }
+
+        &.mm-spn--open {
+            height: fit-content;
+
+            .ee_icon-searchicon {
+                fill: @theme-darkest-gray !important;
+            }
         }
 
         &.mm-hidden {
@@ -45,14 +55,13 @@
             position: absolute;
             transform: translateY(-50%);
             top: 50%;
-            fill: #AEAEAE;
+
+            svg {
+                fill: #AEAEAE !important;
+            }
 
             &--left {
                 left: 20px;
-            }
-
-            .ee_icon-searchicon {
-                fill: #333333 !important;
             }
 
             &--right {
@@ -76,15 +85,22 @@
             font-size: 14px;
             border-radius: 32px !important;
             border: none;
-            background-color: #F2F2F2 !important;
+            background-color: @theme-lightest-gray !important;
+        }
+
+        .search-component--info,
+        ul {
+            padding-left: 36px;
         }
     }
 
     .search-component--suggestions,
     .search-component--info,
     .search-component--results {
+        position: relative;
         text-align: left;
         margin-top: 32px;
+        transition: left @mmspn_transition_duration ease 0s;
 
         @media (min-width: (@breakpoint-l)) {
             margin-top: 48px;
@@ -97,8 +113,8 @@
             color: @theme-darkest-gray;
         }
 
-        ul {
-            padding-left: 36px;
+        li:hover {
+            background: transparent;
         }
     }
 }
