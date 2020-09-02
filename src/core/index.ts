@@ -46,6 +46,9 @@ export default class MmenuLight {
         // Init history back functionality
         this.handleBackButton();
 
+        // Init close on ESC key
+        this.handleESCClose();
+
         document.addEventListener('close:finish', () => {
             this.initEmptyState();
         });
@@ -132,6 +135,14 @@ export default class MmenuLight {
 
         this.addState('#search');
         this.navigator.openPanel(searchDiv, 'Suche');
+    }
+
+    handleESCClose() {
+        document.addEventListener('keyup', (evnt) => {
+            if (evnt.keyCode == 27) {
+                this.drawer.close();
+            }
+        }, { passive: true });
     }
 
     openPanelByHash(href) {

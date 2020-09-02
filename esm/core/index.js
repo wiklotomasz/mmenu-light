@@ -25,6 +25,8 @@ var MmenuLight = /** @class */ (function () {
         document.documentElement.classList.add("mm-init");
         // Init history back functionality
         this.handleBackButton();
+        // Init close on ESC key
+        this.handleESCClose();
         document.addEventListener('close:finish', function () {
             _this.initEmptyState();
         });
@@ -87,6 +89,14 @@ var MmenuLight = /** @class */ (function () {
         var searchDiv = evnt.target.closest('#search-mobile-opener');
         this.addState('#search');
         this.navigator.openPanel(searchDiv, 'Suche');
+    };
+    MmenuLight.prototype.handleESCClose = function () {
+        var _this = this;
+        document.addEventListener('keyup', function (evnt) {
+            if (evnt.keyCode == 27) {
+                _this.drawer.close();
+            }
+        }, { passive: true });
     };
     MmenuLight.prototype.openPanelByHash = function (href) {
         if (href && href.length > 1 && href.slice(0, 1) == '#') {
