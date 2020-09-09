@@ -276,18 +276,28 @@
         width: 100%;
     }
 
-    &__button {
+    .mm-wrapper__button {
         a {
             padding: 0;
         }
 
+        .ctaComponent:not(:last-child) {
+            margin-bottom: 20px;
+        }
+
         .ee_button {
+            width: 100%;
+            height: 48px;
+        }
+
+        .ee_button,
+        .ee_button:hover,
+        .ee_button:active,
+        .ee_button:focus {
             color: @theme-brand-color;
             background: transparent;
             border-color: @theme-brand-color;
             box-shadow: none;
-            padding-top: 6px;
-            padding-bottom: 6px;
         }
     }
 }
@@ -331,7 +341,7 @@
 .mm-box,
 .mm-box:before,
 .mm-panel > .mm-listview {
-    padding-bottom: 21px; // 12px from ul + 21px = 33px
+    padding-bottom: 20px; // 12px from ul + 20px = 32px
 
     @media (min-width: (@breakpoint-l)) {
         padding-bottom: 36px; // 12px from ul + 36px = 48px
@@ -357,4 +367,3 @@
 }
 
 @import '_navbar';
-@import '_vertical';

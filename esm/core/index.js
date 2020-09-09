@@ -21,8 +21,6 @@ var MmenuLight = /** @class */ (function () {
         this._menuId = '#mm-0';
         // Setup state
         this.state = [this._menuId];
-        // Add class to body
-        document.documentElement.classList.add("mm-init");
         // Init history back functionality
         this.handleBackButton();
         // Init close on ESC key
@@ -58,8 +56,8 @@ var MmenuLight = /** @class */ (function () {
         //  Only needs to be done ones.
         if (!this.navigator) {
             options = options || {};
-            var _a = options.title, title = _a === void 0 ? 'Menu' : _a, _b = options.selectedClass, selectedClass = _b === void 0 ? 'selected' : _b, _c = options.slidingSubmenus, slidingSubmenus = _c === void 0 ? true : _c;
-            this.navigator = new MmSlidingPanelsNavigation(this.menu, title, selectedClass, slidingSubmenus);
+            var _a = options.title, title = _a === void 0 ? 'Menu' : _a, _b = options.selectedClass, selectedClass = _b === void 0 ? 'selected' : _b;
+            this.navigator = new MmSlidingPanelsNavigation(this.menu, title, selectedClass);
         }
         return this.navigator;
     };
@@ -133,7 +131,8 @@ var MmenuLight = /** @class */ (function () {
         });
         //back menu or close menu on history back
         window.addEventListener('popstate', function () {
-            if (_this.drawer.isMenuOpen) { //sprawdz czy menu jest otwarte
+            if (_this.drawer.isMenuOpen) {
+                //sprawdz czy menu jest otwarte
                 if (_this.state.length) {
                     history.pushState(null, document.title, mmenu);
                     _this.handleClosings();

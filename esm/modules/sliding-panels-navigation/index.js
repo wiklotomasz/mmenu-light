@@ -10,15 +10,12 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
      * @param {HTMLElement} node            HTMLElement for the menu.
      * @param {string}      title           The title for the menu.
      * @param {string}      selectedClass   The class for selected listitems.
-     * @param {boolean}     slidingSubmenus Whether or not to use sliding submenus.
      * @param {string}      theme           The color scheme for the menu.
      */
-    function MmSlidingPanelsNavigation(node, title, selectedClass, slidingSubmenus) {
+    function MmSlidingPanelsNavigation(node, title, selectedClass) {
         this.node = node;
         this.title = title;
-        this.slidingSubmenus = slidingSubmenus;
         this.selectedClass = selectedClass;
-        this.node.classList.add("mm-spn--" + (this.slidingSubmenus ? 'navbar' : 'vertical'));
         this.mmSpnTitle = this.node.querySelector("#mm-header__title");
         this._setSelectedl();
         this._initAnchors();
@@ -36,7 +33,8 @@ var MmSlidingPanelsNavigation = /** @class */ (function () {
             }
             singlePanel.id = id;
             singlePanel.classList.add("mm-hidden");
-            singlePanel.dataset.mmSpnTitle = singlePanel.dataset.mmSpnTitle || link.textContent;
+            singlePanel.dataset.mmSpnTitle =
+                singlePanel.dataset.mmSpnTitle || link.textContent;
             panelsDiv.append(singlePanel);
         }
         this.node.append(panelsDiv);
